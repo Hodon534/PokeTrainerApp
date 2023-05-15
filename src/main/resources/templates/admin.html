@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pokemon Trainer Application - Login</title>
+    
+    <!-- favicon start -->
+    <link rel="icon" type="image/x-icon" href="/images/pokeball-favicon.png">
+    <!-- favicon end -->
+  </head>
+
+<!-- menu start -->
+<header>
+  <div class="container">
+
+    <!--logo start-->
+      <a href="/"><img src="/images/pokemon-logo.png" alt="Pokemon Logo" class="logo"></a>
+    <!--logo end-->
+
+    <nav>
+      <ul>
+        <li><a href="/" class="transitionbtn">Home</a></li>
+        <li><a href="/dashboard" class="transitionbtn">Dashboard</a></li>
+        <li><a href="/about" class="transitionbtn">About Us</a></li>
+        <li><a href="/contact" class="transitionbtn">Contact</a></li>
+        
+        <!-- Dropdown account menu start -->
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn transitionbtn">Account</a>
+          <div class="dropdown-content">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>
+        </li>
+        <!-- Dropdown account menu end -->
+
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- menu end -->
+
+<body>
+  <div class="main">
+<!-- admin start-->
+
+    <form action="addAllPokemon" method="get">
+      <button class="button2" type="submit">Show card with ID number: </button>
+    </form>
+
+    <!-- admin end-->
+  </div>
+</body>
+<!-- footer start -->
+  <footer>
+    <div class="footer">
+
+      <div class="row">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="row">
+    Pokemon Trainer Application Developer © 2023
+    </div>
+  </footer>
+  
+<!-- footer end -->
+
+</html>
