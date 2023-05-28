@@ -39,7 +39,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/freebies">Freebies</a></li>
+                            <li><a class="dropdown-item" href="/freebie">Freebies</a></li>
                         </ul>
                     </li>
                     <li>
@@ -74,10 +74,10 @@
                     <h3>Admin Page</h3>
                     <hr />
                     <h2>Update Pokemon Database</h2>
-                    <form method="get" action="api/v1/pokemon/update">
+                    <form method="get" th:action="@{/api/v1/pokemon/update}">
                         <div class="form-group">
                             <label for="pokemonGeneration">Which Pokemon Generation would you like to update?</label>
-                            <select class="form-control" name="pokemonGeneration" id="pokemonGeneration">
+                            <select class="form-control" th:name="pokemonGeneration" id="pokemonGeneration">
                                 <option th:each="gen : ${T(com.webapp.poketrainer.model.enums.PokemonGeneration).values()}"
                                 th:value="${gen}" th:text="${gen.getGen()}"></option>
                             </select>

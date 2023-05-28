@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Pokemon Trainer Application - About</title>
-    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Trainer Application - Registration Page</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <!-- favicon start -->
     <link rel="icon" type="image/x-icon" href="/images/pokeball-favicon.png">
     <!-- favicon end -->
-  </head>
-
-<!-- menu start -->
-<header>
-  <div class="container">
-
-    <!--logo start-->
-      <a href="/"><img src="/images/pokemon-logo.png" alt="Pokemon Logo" class="logo"></a>
-    <!--logo end-->
-
-    <nav>
-      <ul>
-        <li><a href="/" class="transitionbtn">Home</a></li>
-        <li><a href="/dashboard" class="transitionbtn">Dashboard</a></li>
-        <li><a href="/about" class="transitionbtn">About Us</a></li>
-        <li><a href="/contact" class="transitionbtn">Contact</a></li>
-        
-        <!-- Dropdown account menu start -->
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropbtn transitionbtn">Account</a>
-          <div class="dropdown-content">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-          </div>
-        </li>
-        <!-- Dropdown account menu end -->
-
-      </ul>
-    </nav>
-  </div>
-</header>
-<!-- menu end -->
+</head>
 <body>
-  <div class="main">
-<!-- about start -->
+<!-- menu start -->
+  <div class="container-fluid overflow-hidden">
+    <div class="row vh-100 overflow-auto">
+        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+                <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5">P<span class="d-none d-sm-inline">okemon Trainer</span></span>
+                </a>
+                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown-dash" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="/overview">Overview</a></li>
+                            <li><a class="dropdown-item" href="/pokedex">Pokedex</a></li>
+                            <li><a class="dropdown-item" href="/login">Shop</a></li>
+                            <li><a class="dropdown-item" href="/catch">Catch a Pokemon!</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/freebies">Freebies</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/contact" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Contact</span></a>
+                    </li>
 
-  <h1>About Us</h1>
-  <div class="about-text">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum nec diam in elementum. Fusce non laoreet quam, vitae convallis felis. Phasellus hendrerit ligula ut libero sodales pellentesque. Suspendisse efficitur viverra elementum. Suspendisse iaculis mauris nulla, tristique viverra nisi faucibus sit amet. Nam ullamcorper non metus ut ultricies. Proin a ipsum eget arcu efficitur dignissim et id justo.
-  <br><br>
-  Donec in ipsum eu ipsum sagittis vulputate. Praesent ornare, erat in vulputate malesuada, enim tellus venenatis massa, vitae laoreet lorem lectus sed magna. Praesent sed rhoncus ligula. Nulla at leo nulla. Praesent feugiat tellus at libero luctus, ac feugiat nisl efficitur. Morbi ac odio ante. Nullam ut sapien nec ante fringilla rutrum vel ac tortor. Phasellus ut egestas ante, ac vehicula orci.
-  <br><br>
-  Morbi nec libero bibendum, cursus nulla sed, tempus nibh. Mauris id velit urna. Ut porttitor mi at augue lobortis, sit amet rutrum nulla rutrum. Vestibulum a egestas justo. Vestibulum rutrum, erat sit amet cursus fringilla, sem sapien vestibulum dolor, non vestibulum magna lacus non quam. Donec vestibulum erat id eros sagittis pulvinar. Vivamus nec consectetur lectus. Vestibulum cursus quam in dictum hendrerit.
-  <br><br>
-  Quisque tincidunt tristique tincidunt. Ut odio lorem, facilisis quis interdum ac, sagittis ut nisl. Nam tincidunt tellus non dui vulputate bibendum. Praesent quis ante quis purus euismod vestibulum. Mauris id sodales ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-  <br><br>
-  Vestibulum lorem turpis, congue id pretium nec, scelerisque eu massa. Quisque lobortis quam sit amet leo semper, vitae iaculis urna porta. Donec quis ipsum molestie, pretium ex fermentum, bibendum sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In elementum sed mauris hendrerit tincidunt. Nullam interdum suscipit purus sed lobortis. Fusce laoreet magna quis lorem eleifend consectetur. Maecenas maximus, lacus in finibus ultrices, massa leo consequat erat, nec porta nisi dui eu velit. Vestibulum auctor vel neque in bibendum. Donec vitae consectetur tortor, blandit pellentesque dolor. Pellentesque ac ipsum metus. Suspendisse potenti. Morbi sit amet nibh eget arcu pellentesque tincidunt.
-  </div>
-<!-- about end -->
-  </div>
+                    <li>
+                        <a href="/about" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">About</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown-acc" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Account</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <li><a class="dropdown-item" href="/register">Register</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="col d-flex flex-column h-sm-100">
+            <main class="row overflow-auto">
+                <div class="col pt-4">
+                    <h3>About Us</h3>
+                    <hr/>
+                    <div class="col pt-1">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum nec diam in elementum. Fusce non laoreet quam, vitae convallis felis. Phasellus hendrerit ligula ut libero sodales pellentesque. Suspendisse efficitur viverra elementum. Suspendisse iaculis mauris nulla, tristique viverra nisi faucibus sit amet. Nam ullamcorper non metus ut ultricies. Proin a ipsum eget arcu efficitur dignissim et id justo.
+                        <br><br>
+                        Donec in ipsum eu ipsum sagittis vulputate. Praesent ornare, erat in vulputate malesuada, enim tellus venenatis massa, vitae laoreet lorem lectus sed magna. Praesent sed rhoncus ligula. Nulla at leo nulla. Praesent feugiat tellus at libero luctus, ac feugiat nisl efficitur. Morbi ac odio ante. Nullam ut sapien nec ante fringilla rutrum vel ac tortor. Phasellus ut egestas ante, ac vehicula orci.
+                        <br><br>
+                        Morbi nec libero bibendum, cursus nulla sed, tempus nibh. Mauris id velit urna. Ut porttitor mi at augue lobortis, sit amet rutrum nulla rutrum. Vestibulum a egestas justo. Vestibulum rutrum, erat sit amet cursus fringilla, sem sapien vestibulum dolor, non vestibulum magna lacus non quam. Donec vestibulum erat id eros sagittis pulvinar. Vivamus nec consectetur lectus. Vestibulum cursus quam in dictum hendrerit.
+                        <br><br>
+                        Quisque tincidunt tristique tincidunt. Ut odio lorem, facilisis quis interdum ac, sagittis ut nisl. Nam tincidunt tellus non dui vulputate bibendum. Praesent quis ante quis purus euismod vestibulum. Mauris id sodales ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+                        <br><br>
+                        Vestibulum lorem turpis, congue id pretium nec, scelerisque eu massa. Quisque lobortis quam sit amet leo semper, vitae iaculis urna porta. Donec quis ipsum molestie, pretium ex fermentum, bibendum sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In elementum sed mauris hendrerit tincidunt. Nullam interdum suscipit purus sed lobortis. Fusce laoreet magna quis lorem eleifend consectetur. Maecenas maximus, lacus in finibus ultrices, massa leo consequat erat, nec porta nisi dui eu velit. Vestibulum auctor vel neque in bibendum. Donec vitae consectetur tortor, blandit pellentesque dolor. Pellentesque ac ipsum metus. Suspendisse potenti. Morbi sit amet nibh eget arcu pellentesque tincidunt.
+                    </div>
+                </div>
+            </main>
+            <footer class="row bg-light py-4 mt-auto">
+                <div class="col">Pokemon Trainer Application Developer - 2023</div>
+            </footer>
+        </div>
+    </div>
+</div>
 </body>
-
-<!-- footer start -->
-
-  <footer>
-    <div class="footer">
-
-      <div class="row">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-      <div class="row">
-    Pokemon Trainer Application Developer © 2023
-    </div>
-  </footer>
-  
-<!-- footer end -->
-
 </html>
