@@ -1,6 +1,5 @@
 package com.webapp.poketrainer.model.entity;
 
-import com.webapp.poketrainer.model.enums.Gender;
 import com.webapp.poketrainer.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -37,22 +36,21 @@ public class UserEntity implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole appUserRole;
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
     private Boolean locked = false;
-    private Boolean enabled = true;
+    private Boolean enabled = false;
+    @OneToOne(cascade=CascadeType.ALL)
+    private TrainerEntity trainerEntity;
 
     public UserEntity(String username,
                       String email,
                       String password,
-                      UserRole appUserRole,
-                      Gender gender
+                      UserRole appUserRole
     ) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.gender = gender;
+        this.trainerEntity = new TrainerEntity(username, this);
     }
 
     @Override

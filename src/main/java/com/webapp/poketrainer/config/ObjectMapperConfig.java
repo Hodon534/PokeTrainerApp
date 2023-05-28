@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ObjectMapperConfig {
 
+    /**
+     * Set Object Mapper that is used to parse JSON as String to Pokemon.class
+     * -> Do not fail on unknown properties
+     */
     @Bean
     public ObjectMapper createObjectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();

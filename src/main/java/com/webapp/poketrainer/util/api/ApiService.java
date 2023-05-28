@@ -1,20 +1,21 @@
 package com.webapp.poketrainer.util.api;
 
-import com.webapp.poketrainer.util.api.ApiLinkCreator;
+
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+
+@Service
+@AllArgsConstructor
 public class ApiService {
-    private static final ApiLinkCreator apiLinkCreator = new ApiLinkCreator();
 
+    @Autowired
+    private WebClient webClient;
 
-    public static String requestData(int value) {
-        String url = apiLinkCreator.createLink(value);
-
-        WebClient.Builder builder = WebClient.builder();
-        System.out.println(url);
-        return builder
-                .build()
+    public String requestData(String url) {
+        return webClient
                 .get()
                 .uri(url)
                 .retrieve()

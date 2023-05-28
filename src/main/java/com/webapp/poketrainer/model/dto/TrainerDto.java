@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 import java.util.HashMap;
-
+//todo
 @Data
 public class TrainerDto {
     private String name;
