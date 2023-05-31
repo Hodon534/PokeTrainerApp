@@ -28,5 +28,5 @@ public interface CardRepository extends JpaRepository<CardEntity, String> {
      * @param name - pokemon name
      * @return List of Pokemon Card values from DB, if any
      */
-    Optional<List<CardEntity>> findCardByNameContaining(String name);
+    Optional<List<CardEntity>> findCardsByNameContaining(String name);
 }
