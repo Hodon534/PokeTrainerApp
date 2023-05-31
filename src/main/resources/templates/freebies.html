@@ -74,7 +74,7 @@
                     <h3>Freebies</h3>
                     <hr />
                     <h2>Receive free Pokemon Cards</h2>
-                    <form action="/api/v1/cards/getRandom" method="get">
+                    <form th:action="@{/api/v1/cards/getRandom}" method="post">
                         <button type="submit" class="btn btn-primary">Get 'em</button>
                     </form>
                 </div>

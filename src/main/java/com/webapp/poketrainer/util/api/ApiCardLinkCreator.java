@@ -12,6 +12,7 @@ public class ApiCardLinkCreator implements ApiLinkCreator {
         return ApiConst.CARD_API_BASE_LINK
                 + ApiConst.SIGN_QUESTION_MARK
                 + ApiConst.CARD_API_PAGE_TEXT
+                + ApiConst.SIGN_EQUALS
                 + value
                 + ApiConst.SIGN_AND
                 + ApiConst.CARD_API_PAGE_SIZE_TEXT

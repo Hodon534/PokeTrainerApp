@@ -18,18 +18,19 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity implements UserDetails {
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
+    /*@SequenceGenerator(
+            name = "users_sequence",
+            sequenceName = "users_sequence",
             allocationSize = 1
     )
-    @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+            generator = "users_sequence"
+    )*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     private String username;
     private String email;

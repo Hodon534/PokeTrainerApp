@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "pokemon_card")
+@Table(name = "pokemon_cards")
 public class CardEntity implements Serializable {
     @Id
     @Column(nullable = false, updatable = false)
@@ -22,7 +22,7 @@ public class CardEntity implements Serializable {
     private String name;
     @Column(name="Small Image")
     private String smallImage;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private TrainerEntity trainer;
     public CardEntity(
             String id,

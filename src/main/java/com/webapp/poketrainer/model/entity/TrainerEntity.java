@@ -16,19 +16,27 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "trainer")
+@Table(name = "trainers")
 public class TrainerEntity implements Serializable {
     @Id
-    @GeneratedValue(
+/*    @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "trainer_sequence"
-    )
+            generator = "trainers_sequence"
+    )*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
-    @OneToMany(mappedBy="trainer", cascade=CascadeType.ALL)
-    private List<PokemonEntity> pokemons;
+    //@OneToMany(mappedBy = "trainer", cascade=CascadeType.ALL)
+    /*@ElementCollection(fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL)
+    //@JoinColumn(name="trainer_id")
+    private List<PokemonEntity> pokemons;*/
 
-    @OneToMany(mappedBy="trainer", cascade=CascadeType.ALL)
+    //@ElementCollection(fetch = FetchType.EAGER)
+    //@OneToMany(cascade=CascadeType.ALL)
+    //@JoinColumn(name="trainer_id")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL)
     private List<CardEntity> cards;
 
     @Enumerated(EnumType.STRING)
@@ -39,17 +47,17 @@ public class TrainerEntity implements Serializable {
 
     public TrainerEntity(String name, UserEntity userEntity) {
         this.name = name;
-        this.pokemons = new ArrayList<>();
-        this.cards = new ArrayList<>();
+/*        this.pokemons = new ArrayList<>();
+        this.cards = new ArrayList<>();*/
         this.trainerType = TrainerType.BEGINNER;
         this.userEntity = userEntity;
     }
 
-    public void addPokemon(PokemonEntity pokemonEntity) {
+   /* public void addPokemon(PokemonEntity pokemonEntity) {
         pokemons.add(pokemonEntity);
     }
 
-    public void addCard(PokemonEntity pokemonEntity) {
-        pokemons.add(pokemonEntity);
-    }
+    public void addCard(CardEntity cardEntity) {
+        cards.add(cardEntity);
+    }*/
 }

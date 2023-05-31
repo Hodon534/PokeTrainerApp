@@ -7,6 +7,8 @@ import com.webapp.poketrainer.model.entity.ConfirmationTokenEntity;
 import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -55,6 +57,8 @@ public class UserService implements UserDetailsService {
     public int enableUser(String email) {
         return userRepository.enableUserEntity(email);
     }
+
+
 }
 
 //        //trainerRepository.save(user.getTrainerEntity());

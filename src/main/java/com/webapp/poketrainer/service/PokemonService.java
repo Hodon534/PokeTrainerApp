@@ -16,20 +16,27 @@ public class PokemonService {
 
     private final PokemonRepository pokemonRepository;
     private final PokemonMapper pokemonMapper;
+    private final TrainerService trainerService;
 
-    public PokemonService(PokemonRepository pokemonRepository, PokemonMapper pokemonMapper) {
+    public PokemonService(PokemonRepository pokemonRepository, PokemonMapper pokemonMapper, TrainerService trainerService) {
         this.pokemonRepository = pokemonRepository;
         this.pokemonMapper = pokemonMapper;
+        this.trainerService = trainerService;
     }
 
     public PokemonEntity addPokemon(Pokemon pokemon) {
-        return pokemonRepository.save(pokemonMapper.pokemonPojoToPokemonEntity(pokemon));
+        return pokemonRepository.save(pokemonMapper.pojoToEntity(pokemon));
     }
 
     public List<PokemonDto> findAllPokemons() {
         List<PokemonEntity> pokemonEntitiesList = pokemonRepository.findAll();
-        List<PokemonDto> pokemonDtoList = pokemonEntitiesList.stream().map(pokemonMapper::pokemonEntityToPokemonDto).toList();
+        List<PokemonDto> pokemonDtoList = pokemonEntitiesList.stream().map(pokemonMapper::entityToDto).toList();
         return pokemonDtoList;
     }
 
+/*    public PokemonEntity addTrainerToPokemon(Long id) {
+        if (pokemonRepository.existsById(id)) {
+
+        }
+    }*/
 }

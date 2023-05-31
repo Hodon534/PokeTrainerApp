@@ -48,6 +48,11 @@ public class PokemonController {
                             apiPokemonLinkCreator.createLink(
                                     i))));
         }
-        return "/admin";
+        return "admin";
+    }
+
+    @PostMapping("/catchRandom")
+    public void getRandomPokemon() throws IOException {
+        //pokemonService.addTrainerToPokemon();
     }
 }

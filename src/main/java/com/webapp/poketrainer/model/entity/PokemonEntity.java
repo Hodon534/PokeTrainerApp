@@ -11,7 +11,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "pokemon")
+@Table(name = "pokemons")
 public class PokemonEntity implements Serializable {
     @Id
     private Long id;
@@ -28,8 +28,8 @@ public class PokemonEntity implements Serializable {
     private Long baseExperience;
     @Column(name="Big Image")
     private String bigImage;
-    @ManyToOne
-    private TrainerEntity trainer;
+    /*@ManyToMany
+    private TrainerEntity trainer;*/
 
     public PokemonEntity(Long id, String name, Long height, Long weight, List<String> pokemonTypes, Long baseExperience, String bigImage) {
         this.id = id;

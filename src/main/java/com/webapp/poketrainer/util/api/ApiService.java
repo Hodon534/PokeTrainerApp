@@ -15,6 +15,7 @@ public class ApiService {
     private WebClient webClient;
 
     public String requestData(String url) {
+        System.out.println(url);
         return webClient
                 .get()
                 .uri(url)

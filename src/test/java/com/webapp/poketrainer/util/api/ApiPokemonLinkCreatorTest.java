@@ -1,27 +1,20 @@
 package com.webapp.poketrainer.util.api;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.webapp.poketrainer.util.api.interfaces.ApiLinkCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApiPokemonLinkCreatorTest {
 
-    private ApiPokemonLinkCreator apiPokemonLinkCreator;
-
-    @BeforeEach
-    void beforeEach() {
-        this.apiPokemonLinkCreator = new ApiPokemonLinkCreator();
-    }
-
     @Test
     void createLink() {
         //given
-        String expectedUrl = "https://pokeapi.co/api/v2/pokemon/1";
-        String pokemonId = "1";
+        ApiLinkCreator apiPokemonLinkCreator = new ApiPokemonLinkCreator();
         //when
-        //String outputUrl = apiPokemonLinkCreator.createLink(pokemonId);
+        String properUrl = "https://pokeapi.co/api/v2/pokemon/123";
+        int input = 123;
         //then
-        //assertEquals(expectedUrl, outputUrl);
+        assertEquals(properUrl, apiPokemonLinkCreator.createLink(input));
     }
 }

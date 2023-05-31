@@ -22,13 +22,13 @@ public class PokemonMapper {
      * @param pokemon - pokemon POJO from api request
      * @return PokemonEntity - Object in DB
      */
-    public PokemonEntity pokemonPojoToPokemonEntity(Pokemon pokemon) {
+    public PokemonEntity pojoToEntity(Pokemon pokemon) {
         return new PokemonEntity(
                 pokemon.getId(),
                 pokemon.getName(),
                 pokemon.getHeight(),
                 pokemon.getWeight(),
-                getTypesFromPokemonPojo(pokemon),
+                getTypesFromPojo(pokemon),
                 pokemon.getBaseExperience(),
                 pokemon.getSprites().getOther().getDreamWorld().getFrontDefault());
     }
@@ -36,7 +36,7 @@ public class PokemonMapper {
     /**
      * Extract pokemon types and return 'em as a list
      */
-    private List<String> getTypesFromPokemonPojo(Pokemon pokemon) {
+    private List<String> getTypesFromPojo(Pokemon pokemon) {
         List<String> types = new ArrayList<>();
         for (Type type : pokemon.getTypes()) {
             types.add(type.getType().getName());
@@ -49,7 +49,7 @@ public class PokemonMapper {
      * @param pokemonEntity - entity from DB
      * @return PokemonDto - Object of Pokemon
      */
-    public PokemonDto pokemonEntityToPokemonDto(PokemonEntity pokemonEntity) {
+    public PokemonDto entityToDto(PokemonEntity pokemonEntity) {
         return new PokemonDto(
                 pokemonEntity.getId(),
                 pokemonEntity.getName(),

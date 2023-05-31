@@ -2,6 +2,7 @@ package com.webapp.poketrainer.config;
 
 
 import com.webapp.poketrainer.model.constants.AccessConst;
+import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.UserRole;
 import com.webapp.poketrainer.service.UserService;
 import jakarta.persistence.Access;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -20,8 +22,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig {
-    private final UserService userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    //private final UserService userService;
+    //private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,13 +34,13 @@ public class WebSecurityConfig {
                         auth -> {
                             auth.requestMatchers(AccessConst.RESOURCES_PUBLIC).
                                     permitAll();
-                           /* auth.requestMatchers(AccessConst.RESOURCES_USER)
+                            auth.requestMatchers(AccessConst.RESOURCES_USER)
                                     .hasAnyAuthority(
                                             UserRole.USER.name(),
                                             UserRole.ADMIN.name());
                             auth.requestMatchers(AccessConst.RESOURCES_ADMIN)
                                     .hasAnyAuthority(
-                                            UserRole.ADMIN.name());*/
+                                            UserRole.ADMIN.name());
                         })
                 .formLogin(
                         (form) ->
@@ -55,7 +57,7 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+/*    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
@@ -66,6 +68,6 @@ public class WebSecurityConfig {
         provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(userService);
         return provider;
-    }
+    }*/
 
 }

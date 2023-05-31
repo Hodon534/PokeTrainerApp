@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Trainer Application - Contact Page</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <!-- favicon start -->
+    <link rel="icon" type="image/x-icon" href="/images/pokeball-favicon.png">
+    <!-- favicon end -->
+</head>
+<body>
+<!-- menu start -->
+<div class="container-fluid overflow-hidden">
+    <div class="row vh-100 overflow-auto">
+        <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
+            <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+                <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5">P<span class="d-none d-sm-inline">okemon Trainer</span></span>
+                </a>
+                <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown-dash" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="/overview">Overview</a></li>
+                            <li><a class="dropdown-item" href="/pokedex">Pokedex</a></li>
+                            <li><a class="dropdown-item" href="/login">Shop</a></li>
+                            <li><a class="dropdown-item" href="/catch">Catch a Pokemon!</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/freebie">Freebies</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/contact" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Contact</span></a>
+                    </li>
+
+                    <li>
+                        <a href="/about" class="nav-link px-sm-0 px-2">
+                            <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">About</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown-acc" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Account</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            <li><a class="dropdown-item" href="/register">Register</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="col d-flex flex-column h-sm-100">
+            <main class="row overflow-auto">
+                <div class="col pt-4">
+                    <h3>Freebies</h3>
+                    <hr />
+                    <h2>Catch a pokemon!</h2>
+                    <form th:action="@{/api/v1/pokemon/catchRandom}" method="post">
+                        <button type="submit" class="btn btn-primary">Catch 'em!</button>
+                    </form>
+                </div>
+            </main>
+            <footer class="row bg-light py-4 mt-auto">
+                <div class="col">Pokemon Trainer Application Developer - 2023</div>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>
