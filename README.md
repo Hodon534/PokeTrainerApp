@@ -13,16 +13,23 @@ Features:
 - Downloading Pokemons via Admin Panel
 - Getting random Pokemon Cards
 
+
+      Java project with Bootstrap
+
 Backend:
-- Java
 - SpringBoot
 - MySql
 - Hibernate
 - Thymeleaf
-- H2 (DB testing)
+
+Testing:
+- SpringBoot (MockMvc)
+- H2
+- JUnit
+- Mockito
 
 Frontend:
-- Bootstrap 
+- Bootstrap
 
 To do:
 - Newsletter
@@ -30,4 +37,4 @@ To do:
 - Adding pokemons to users
 
 ---
-Working on tests
+    Working on tests
