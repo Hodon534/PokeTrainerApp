@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController implements StaticPage {
 
     @Override
-    @GetMapping({"/", "index"})
+    @GetMapping({"/", "/index", "/home"})
     public String getPage() {
         return "index";
     }

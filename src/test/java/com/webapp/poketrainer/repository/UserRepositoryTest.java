@@ -3,6 +3,7 @@ package com.webapp.poketrainer.repository;
 import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.UserRole;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,7 +13,7 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
+@DataJpaTest // Test Repository
 class UserRepositoryTest {
 
     @Autowired
@@ -24,7 +25,7 @@ class UserRepositoryTest {
     }
     @Test
     void itShouldCheckIfEmailExist() {
-        //given
+        // given
         String email = "someEmail@email.com";
         UserEntity user = new UserEntity(
                 "someUser",
@@ -33,25 +34,27 @@ class UserRepositoryTest {
                 UserRole.USER
         );
         underTest.save(user);
-        //when
-        Optional<UserEntity> anotherUser = underTest.findByEmail(email);
-        //then
-        assertTrue(anotherUser.isPresent());
+        // when
+        Optional<UserEntity> optionalUser = underTest.findByEmail(email);
+        // then
+        assertTrue(optionalUser.isPresent());
+        assertEquals(user, optionalUser.get());
     }
 
     @Test
     void itShouldCheckThatEmailDoesNotExist() {
-        //given
+        // given
         String email = "testingEmail@email.com";
-        //when
+        // when
         Optional<UserEntity> anotherUser = underTest.findByEmail(email);
-        //then
+        // then
         assertFalse(anotherUser.isPresent());
     }
 
-/*    @Test
+    @Test
+    @Disabled
     void makeSureThatEnablingUserWorks() {
-        //given
+        // given
         String email = "someEmail@email.com";
         UserEntity user = new UserEntity(
                 "someUser",
@@ -61,16 +64,16 @@ class UserRepositoryTest {
         );
         underTest.save(user);
         boolean enabled = true;
-        //when
+        // when
         underTest.enableUserEntity(email);
         boolean ifUserEnabled = user.getEnabled();
-        //then
+        // then
         assertEquals(enabled, ifUserEnabled);
-    }*/
+    }
 
     @Test
     void makeSureThatUsersAreDisabledAfterRegistering() {
-        //given
+        // given
         String email = "someEmail@email.com";
         UserEntity user = new UserEntity(
                 "someUser",
@@ -80,9 +83,9 @@ class UserRepositoryTest {
         );
         underTest.save(user);
         boolean notEnabled = false;
-        //when
+        // when
         boolean ifUserEnabled = user.getEnabled();
-        //then
+        // then
         assertEquals(notEnabled, ifUserEnabled);
     }
 }

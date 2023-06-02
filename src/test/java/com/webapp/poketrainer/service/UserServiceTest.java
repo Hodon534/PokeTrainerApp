@@ -35,7 +35,7 @@ class UserServiceTest {
     @Test
     @Disabled
     void checkIfItCanLoadExistingUserByEmail() {
-        //given
+        // given
         String email = "someEmail@email.com";
         UserEntity user = new UserEntity(
                 "someUser",
@@ -43,11 +43,11 @@ class UserServiceTest {
                 "password",
                 UserRole.USER
         );
-        //when;
+        // when;
         verify(userRepository).save(user);
         UserDetails userDetails = underTest.loadUserByUsername(email);
 
-        //then
+        // then
         assertAll(
                 ()-> assertNotNull(userDetails),
                 ()-> assertEquals(userDetails.getUsername(), email)

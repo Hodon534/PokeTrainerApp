@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
+@DataJpaTest // Test Repository
 class PokemonRepositoryTest {
 
     @Autowired
@@ -20,36 +20,34 @@ class PokemonRepositoryTest {
 
     @Test
     void shouldFindPokemonById() {
-        //given
+        // given
         Long id = 33L;
-        String name = "nidorino";
-        List<String> types = new ArrayList<>(
-                Arrays.asList(
-                        "Poison"
-                ));
         PokemonEntity pokemonInput = new PokemonEntity(
                 id,
-                name,
+                "nidorino",
                 9L,
                 195L,
-                types,
+                List.of(
+                        "Poison"
+                ),
                 128L,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/33.svg"
         );
-        //when
+        // when
         underTest.save(pokemonInput);
         Optional<PokemonEntity> optionalPokemon = underTest.findPokemonById(id);
-        //then
+        // then
         assertTrue(optionalPokemon.isPresent());
+        assertEquals(optionalPokemon.get(), pokemonInput);
     }
 
     @Test
     void shouldNotFindPokemonById() {
-        //given
+        // given
         Long id = 89L;
-        //when
-        //then
+        // when
         Optional<PokemonEntity> optionalPokemon = underTest.findPokemonById(id);
+        // then
         assertFalse(optionalPokemon.isPresent());
     }
 
