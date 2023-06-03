@@ -12,6 +12,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Pokemon Mapper:
+ * String -> Pokemon
+ * Pokemon -> PokemonEntity
+ * PokemonEntity -> PokemonDto
+ */
 @AllArgsConstructor
 @Component
 public class PokemonMapper {
@@ -60,6 +66,13 @@ public class PokemonMapper {
                 pokemonEntity.getBigImage());
     }
 
+
+    /**
+     * Map Json as String to Pokemon.class
+     * @param input - Json as String
+     * @return Pokemon Object
+     * @throws IOException
+     */
     public Pokemon mapJsonToPokemon(String input) throws IOException {
         return objectMapper.readValue(input, Pokemon.class);
     }
