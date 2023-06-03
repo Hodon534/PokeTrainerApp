@@ -6,7 +6,7 @@ package com.webapp.poketrainer.model.enums;
  * 1st generation only
  */
 public enum PokeBallType {
-    POKE_BALL(1),
+/*    POKE_BALL(1),
     GREAT_BALL(1.5),
     ULTRA_BALL(2),
     SAFARI_BALL(1),
@@ -16,5 +16,5 @@ public enum PokeBallType {
 
     PokeBallType(double catchRateModifier) {
         this.catchRateModifier = catchRateModifier;
-    }
+    }*/
 }

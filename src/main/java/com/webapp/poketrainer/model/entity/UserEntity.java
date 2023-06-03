@@ -20,15 +20,6 @@ import java.util.Collections;
 @Entity
 @Table(name = "users")
 public class UserEntity implements UserDetails {
-    /*@SequenceGenerator(
-            name = "users_sequence",
-            sequenceName = "users_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "users_sequence"
-    )*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;

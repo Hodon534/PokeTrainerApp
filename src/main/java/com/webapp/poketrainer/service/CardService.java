@@ -51,9 +51,9 @@ public class CardService {
     }
 */
 
-    public void deleteCard(String id) {
+/*    public void deleteCard(String id) {
         cardRepository.deleteCardById(id);
-    }
+    }*/
 
 
     public void addRandomCards() throws IOException {

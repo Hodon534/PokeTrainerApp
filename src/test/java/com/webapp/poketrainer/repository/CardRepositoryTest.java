@@ -15,7 +15,7 @@ class CardRepositoryTest {
 
     @Autowired
     private CardRepository underTest;
-    @Test
+    /*@Test
     void deleteCardById() {
         // given
         String id = "ex5-19";
@@ -32,7 +32,7 @@ class CardRepositoryTest {
         underTest.deleteCardById(id);
         assertFalse(underTest.findById(id).isPresent());
 
-    }
+    }*/
 
     @Test
     @Disabled

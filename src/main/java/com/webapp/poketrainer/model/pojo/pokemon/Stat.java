@@ -11,8 +11,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Stat {
-    @JsonProperty("base_stat")
+/*    @JsonProperty("base_stat")
     private long baseStat;
     private long effort;
-    private Species stat;
+    private Species stat;*/
 }

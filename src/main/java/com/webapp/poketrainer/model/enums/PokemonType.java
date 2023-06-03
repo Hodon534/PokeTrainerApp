@@ -5,7 +5,7 @@ package com.webapp.poketrainer.model.enums;
  * source: https://bulbapedia.bulbagarden.net/wiki/Type
  */
 public enum PokemonType {
-    NORMAL,
+/*    NORMAL,
     FIGHTING,
     FLYING,
     POISON,
@@ -23,5 +23,5 @@ public enum PokemonType {
     DRAGON,
     DARK,
     FAIRY,
-    UNKNOWN;
+    UNKNOWN;*/
 }

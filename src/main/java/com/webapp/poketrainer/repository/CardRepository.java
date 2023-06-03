@@ -14,7 +14,7 @@ public interface CardRepository extends JpaRepository<CardEntity, String> {
      * Delete single pokemon card
      * @param id - unique pokemon card ID
      */
-    void deleteCardById(String id);
+/*    void deleteCardById(String id);*/
 
 /*    *//**
      * Find single pokemon card

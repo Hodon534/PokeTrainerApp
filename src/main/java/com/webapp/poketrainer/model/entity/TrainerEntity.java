@@ -19,10 +19,6 @@ import java.util.List;
 @Table(name = "trainers")
 public class TrainerEntity implements Serializable {
     @Id
-/*    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "trainers_sequence"
-    )*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;

@@ -14,6 +14,6 @@ public interface PokemonRepository extends JpaRepository<PokemonEntity, Long> {
      * @param id - unique pokemon ID
      * @return Pokemon from database, if any
      */
-    Optional<PokemonEntity> findPokemonById(Long id);
+/*    Optional<PokemonEntity> findPokemonById(Long id);*/
 
 }
