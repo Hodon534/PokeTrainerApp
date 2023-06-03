@@ -1,6 +1,7 @@
 package com.webapp.poketrainer.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.webapp.poketrainer.model.dto.PokemonDto;
 import com.webapp.poketrainer.model.entity.PokemonEntity;
 import com.webapp.poketrainer.model.pojo.pokemon.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@AllArgsConstructor
 class PokemonMapperTest {
 
     @Autowired
@@ -62,6 +62,28 @@ class PokemonMapperTest {
 
     @Test
     void entityToDto() {
+        // given
+        PokemonEntity pokemonEntity = new PokemonEntity(
+                1L,
+                "bulbasaur",
+                7L,
+                69L,
+                List.of("poison", "grass"),
+                64L,
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+        );
+        // when
+        PokemonDto pokemonDto = underTest.entityToDto(pokemonEntity);
+        // then
+        assertAll(
+                () -> assertEquals(pokemonDto.getId(), pokemonEntity.getId()),
+                () -> assertEquals(pokemonDto.getName(), pokemonEntity.getName()),
+                () -> assertEquals(pokemonDto.getHeight(), pokemonEntity.getHeight()),
+                () -> assertEquals(pokemonDto.getWeight(), pokemonEntity.getWeight()),
+                () -> assertEquals(pokemonDto.getTypes(), pokemonEntity.getPokemonTypes()),
+                () -> assertEquals(pokemonDto.getBaseExperience(), pokemonEntity.getBaseExperience()),
+                () -> assertEquals(pokemonDto.getBigImage(), pokemonEntity.getBigImage())
+        );
     }
 
     @Test

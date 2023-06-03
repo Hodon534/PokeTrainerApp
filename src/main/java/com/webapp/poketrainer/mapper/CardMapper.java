@@ -23,7 +23,6 @@ import java.util.Optional;
 @Component
 public class CardMapper {
     private final ObjectMapper objectMapper;
-    private final TrainerRepository trainerRepository;
 
     /**
      * Map Card from CardList from pokeapi.co into database appropriate entity

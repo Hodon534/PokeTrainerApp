@@ -57,9 +57,8 @@ class CardRepositoryTest {
         List<CardEntity> cardList = List.of(firstCard, secondCard);
         // when
         underTest.saveAll(cardList);
-
-        // then
         Optional<List<CardEntity>> optionalList = underTest.findCardsByNameContaining(searchedName);
+        // then
         assertTrue(optionalList.isPresent());
         System.out.println(optionalList.get().get(0));
         System.out.println(optionalList.get().get(1));
