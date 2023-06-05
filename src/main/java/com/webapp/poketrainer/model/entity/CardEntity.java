@@ -22,7 +22,7 @@ public class CardEntity implements Serializable {
     private String name;
     @Column(name="Small Image")
     private String smallImage;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private TrainerEntity trainer;
     public CardEntity(
             String id,

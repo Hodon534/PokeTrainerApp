@@ -66,6 +66,18 @@ public class PokemonMapper {
                 pokemonEntity.getBigImage());
     }
 
+    public PokemonEntity dtoToEntity(PokemonDto pokemonDto) {
+        return new PokemonEntity(
+                pokemonDto.getId(),
+                pokemonDto.getName(),
+                pokemonDto.getHeight(),
+                pokemonDto.getWeight(),
+                pokemonDto.getTypes(),
+                pokemonDto.getBaseExperience(),
+                pokemonDto.getBigImage()
+        );
+    }
+
 
     /**
      * Map Json as String to Pokemon.class

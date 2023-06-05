@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,40 +21,32 @@ import java.util.List;
 public class TrainerEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String name;
-    //@OneToMany(mappedBy = "trainer", cascade=CascadeType.ALL)
-    /*@ElementCollection(fetch = FetchType.EAGER)
-    @OneToMany(cascade=CascadeType.ALL)
-    //@JoinColumn(name="trainer_id")
-    private List<PokemonEntity> pokemons;*/
-
-    //@ElementCollection(fetch = FetchType.EAGER)
-    //@OneToMany(cascade=CascadeType.ALL)
-    //@JoinColumn(name="trainer_id")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "trainers", cascade = CascadeType.ALL)
+    /*@JoinTable(
+            name = "pokemons_trainers",
+            joinColumns = @JoinColumn(name = "trainers_id"),
+            inverseJoinColumns = @JoinColumn(name = "pokemons_id"))*/
+    private Set<PokemonEntity> pokemons;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL) //, cascade = CascadeType.ALL
     private List<CardEntity> cards;
-
     @Enumerated(EnumType.STRING)
     private TrainerType trainerType;
-
     @OneToOne
     private UserEntity userEntity;
 
     public TrainerEntity(String name, UserEntity userEntity) {
         this.name = name;
-/*        this.pokemons = new ArrayList<>();
-        this.cards = new ArrayList<>();*/
         this.trainerType = TrainerType.BEGINNER;
         this.userEntity = userEntity;
     }
 
    /* public void addPokemon(PokemonEntity pokemonEntity) {
         pokemons.add(pokemonEntity);
-    }
+    }*/
 
     public void addCard(CardEntity cardEntity) {
         cards.add(cardEntity);
-    }*/
+    }
 }

@@ -1,18 +1,28 @@
 package com.webapp.poketrainer.model.dto;
 
-import com.webapp.poketrainer.model.enums.PokeBallType;
+import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.TrainerType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
-import java.util.HashMap;
-//todo
+import java.util.List;
+
 @Data
+@AllArgsConstructor
 public class TrainerDto {
-/*    private String name;
-    private long id;
+    private Long id;
+    private String name;
+    private List<CardDto> cards;
+    private List<PokemonDto> pokemons;
     private TrainerType trainerType;
-    private HashMap<PokemonDto, Integer> ownedPokemons;
-    private HashMap<PokeBallType, Integer> ownedPokeBalls;
-    private long coins;*/
+    private UserEntity userEntity;
+
+    public void addCard(CardDto cardDto) {
+        cards.add(cardDto);
+    }
+
+    public void addPokemon(PokemonDto pokemonDto) {
+        pokemons.add(pokemonDto);
+    }
 }

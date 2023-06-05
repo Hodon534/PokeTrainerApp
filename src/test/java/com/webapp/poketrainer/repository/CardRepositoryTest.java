@@ -15,29 +15,6 @@ class CardRepositoryTest {
 
     @Autowired
     private CardRepository underTest;
-    /*@Test
-    void deleteCardById() {
-        // given
-        String id = "ex5-19";
-        CardEntity card = new CardEntity(
-                id,
-                "Huntail",
-                "https://images.pokemontcg.io/ex5/19.png"
-        );
-        // when
-        underTest.save(card);
-        Optional<CardEntity> optionalCard = underTest.findById(id);
-        // then
-        assertTrue(optionalCard.isPresent());
-        underTest.deleteCardById(id);
-        assertFalse(underTest.findById(id).isPresent());
-
-    }*/
-
-    @Test
-    @Disabled
-    void findCardById() {
-    }
 
     @Test
     @Disabled

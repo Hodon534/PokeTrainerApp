@@ -1,6 +1,7 @@
 package com.webapp.poketrainer.service;
 
 import com.webapp.poketrainer.mapper.CardMapper;
+import com.webapp.poketrainer.mapper.TrainerMapper;
 import com.webapp.poketrainer.model.constants.ApiConst;
 import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
@@ -9,9 +10,6 @@ import com.webapp.poketrainer.model.pojo.card.CardList;
 import com.webapp.poketrainer.repository.CardRepository;
 import com.webapp.poketrainer.util.api.ApiCardLinkCreator;
 import com.webapp.poketrainer.util.api.ApiService;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,15 +26,16 @@ public class CardService {
     private final ApiService apiService;
     private final ApiCardLinkCreator apiCardLinkCreator;
     private final Random random;
+    private final TrainerService trainerService;
+    private final TrainerMapper trainerMapper;
 
-    private TrainerService trainerService;
-
-    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator, TrainerService trainerService) {
+    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator, TrainerService trainerService, TrainerMapper trainerMapper) {
         this.cardMapper = cardMapper;
         this.cardRepository = cardRepository;
         this.apiService = apiService;
         this.apiCardLinkCreator = apiCardLinkCreator;
         this.trainerService = trainerService;
+        this.trainerMapper = trainerMapper;
         this.random = new Random();
     }
 
@@ -44,16 +43,10 @@ public class CardService {
         return cardRepository.save(
                 cardMapper.pojoToEntity(card));
     }
-/*
-    public CardEntity addCard(Card card, TrainerEntity trainer) {
-        return cardRepository.save(
-                cardMapper.pojoToEntity(card, trainer));
-    }
-*/
 
-/*    public void deleteCard(String id) {
-        cardRepository.deleteCardById(id);
-    }*/
+    public void deleteCard(String id) {
+        cardRepository.deleteById(id);
+    }
 
 
     public void addRandomCards() throws IOException {
@@ -71,10 +64,15 @@ public class CardService {
                             .stream()
                             .toList());
         }
-        //TrainerEntity trainer = trainerService.getLogged();
-        //cardList.forEach(value -> trainer.addCard(cardMapper.pojoToEntity(value ,trainer)));
-        cardList.forEach(value -> addCard(value));
-        //cardList.forEach(value -> trainerService.getLogged().addCard(cardMapper.pojoToEntity(value, trainerService.getLogged())));
+        TrainerEntity trainer = trainerService.getLogged();
+        cardList.forEach(value -> trainer.addCard(cardMapper.pojoToEntity(value)));
+        trainerService.update(trainer);
+        /*TrainerDto trainer = trainerMapper.entityToDto(trainerService.getLogged());
+        List<CardDto> trainesListOfCards = trainer.getCards();
+
+        cardList.forEach(value -> trainesListOfCards.add(cardMapper.pojoToDto(value)));
+        trainer.setCards(trainesListOfCards);
+        trainerService.update(trainerMapper.dtoToEntity(trainer));*/
 
     }
 

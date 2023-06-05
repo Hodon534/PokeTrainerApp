@@ -47,6 +47,25 @@ public class CardMapper {
                 cardEntity.getSmallImage());
     }
 
+
+    public CardEntity dtoToEntity(CardDto cardDto) {
+        return new CardEntity(
+                cardDto.getId(),
+                cardDto.getName(),
+                cardDto.getSmallImage());
+    }
+    /**
+     * Map Card from CardList to CardDto
+     * @param card from CardList (POJO)
+     * @return CardDto
+     */
+    public CardDto pojoToDto(Card card) {
+        return new CardDto(
+                card.getId(),
+                card.getName(),
+                card.getImages().getSmall());
+    }
+
     /**
      * Map String from pokeapi.co into CardList Object
      * @param input - json as String

@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,15 +22,14 @@ public class PokemonEntity implements Serializable {
     private Long height;
     @Column(name="Weight")
     private Long weight;
-    //@Enumerated(EnumType.STRING)
     @Column(name="Types")
     private List<String> pokemonTypes;
     @Column(name="Base Experience")
     private Long baseExperience;
     @Column(name="Big Image")
     private String bigImage;
-    /*@ManyToMany
-    private TrainerEntity trainer;*/
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<TrainerEntity> trainers;
 
     public PokemonEntity(Long id, String name, Long height, Long weight, List<String> pokemonTypes, Long baseExperience, String bigImage) {
         this.id = id;
