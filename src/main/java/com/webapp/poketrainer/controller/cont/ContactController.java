@@ -11,12 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * Controller responsible for Contact Page
+ */
 @Controller
 @AllArgsConstructor
 public class ContactController implements ModelPage {
 
     private ContactFormService contactFormService;
 
+    /**
+     * Method responsible for redirecting to contact page and parsing ContactFormDto into html via thymeleaf
+     * @param model - ContactFormDto
+     * @return contact (contact.html)
+     */
     @Override
     @GetMapping("/contact")
     public String getPage(Model model) {
@@ -25,8 +33,14 @@ public class ContactController implements ModelPage {
         return "contact";
     }
 
+    /**
+     * Method responsible for parsing Contact Form from website into proper service (ContactFormService)
+     * @param contactForm filled on website
+     * @param model
+     * @throws MessagingException
+     */
     @PostMapping("/contact")
-    public void getContactForm(@ModelAttribute("contactForm") ContactFormDto contactForm, Model model) throws MessagingException {
+    public void postContactForm(@ModelAttribute("contactForm") ContactFormDto contactForm, Model model) throws MessagingException {
         contactFormService.sendEmail(contactForm);
     }
 }

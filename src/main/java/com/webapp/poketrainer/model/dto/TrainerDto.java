@@ -18,11 +18,4 @@ public class TrainerDto {
     private TrainerType trainerType;
     private UserEntity userEntity;
 
-    public void addCard(CardDto cardDto) {
-        cards.add(cardDto);
-    }
-
-    public void addPokemon(PokemonDto pokemonDto) {
-        pokemons.add(pokemonDto);
-    }
 }
