@@ -1,20 +1,12 @@
 package com.webapp.poketrainer.config;
 
-
 import com.webapp.poketrainer.model.constants.AccessConst;
-import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.UserRole;
-import com.webapp.poketrainer.service.UserService;
-import jakarta.persistence.Access;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 

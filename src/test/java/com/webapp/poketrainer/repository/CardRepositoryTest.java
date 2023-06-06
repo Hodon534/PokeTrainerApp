@@ -1,6 +1,7 @@
 package com.webapp.poketrainer.repository;
 
 import com.webapp.poketrainer.model.entity.CardEntity;
+import com.webapp.poketrainer.model.entity.TrainerEntity;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,14 @@ class CardRepositoryTest {
         CardEntity firstCard = new CardEntity(
                 "ex5-19",
                 "Huntail",
-                "https://images.pokemontcg.io/ex5/19.png"
+                "https://images.pokemontcg.io/ex5/19.png",
+                new TrainerEntity()
         );
         CardEntity secondCard = new CardEntity(
                 "bx-234",
                 "Huntail & Hutsky",
-                "https://images.pokemontcg.io/ex5/192.png"
+                "https://images.pokemontcg.io/ex5/192.png",
+                new TrainerEntity()
         );
         List<CardEntity> cardList = List.of(firstCard, secondCard);
         // when

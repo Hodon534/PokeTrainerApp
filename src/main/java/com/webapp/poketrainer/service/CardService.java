@@ -1,7 +1,6 @@
 package com.webapp.poketrainer.service;
 
 import com.webapp.poketrainer.mapper.CardMapper;
-import com.webapp.poketrainer.mapper.TrainerMapper;
 import com.webapp.poketrainer.model.constants.ApiConst;
 import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
@@ -27,21 +26,19 @@ public class CardService {
     private final ApiCardLinkCreator apiCardLinkCreator;
     private final Random random;
     private final TrainerService trainerService;
-    private final TrainerMapper trainerMapper;
 
-    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator, TrainerService trainerService, TrainerMapper trainerMapper) {
+    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator, TrainerService trainerService) {
         this.cardMapper = cardMapper;
         this.cardRepository = cardRepository;
         this.apiService = apiService;
         this.apiCardLinkCreator = apiCardLinkCreator;
         this.trainerService = trainerService;
-        this.trainerMapper = trainerMapper;
         this.random = new Random();
     }
 
-    public CardEntity addCard(Card card) {
+    public CardEntity addCard(Card card, TrainerEntity trainerEntity) {
         return cardRepository.save(
-                cardMapper.pojoToEntity(card));
+                cardMapper.pojoToEntity(card, trainerEntity));
     }
 
     public void deleteCard(String id) {
@@ -64,15 +61,8 @@ public class CardService {
                             .stream()
                             .toList());
         }
-        TrainerEntity trainer = trainerService.getLogged();
-        cardList.forEach(value -> trainer.addCard(cardMapper.pojoToEntity(value)));
-        trainerService.update(trainer);
-        /*TrainerDto trainer = trainerMapper.entityToDto(trainerService.getLogged());
-        List<CardDto> trainesListOfCards = trainer.getCards();
-
-        cardList.forEach(value -> trainesListOfCards.add(cardMapper.pojoToDto(value)));
-        trainer.setCards(trainesListOfCards);
-        trainerService.update(trainerMapper.dtoToEntity(trainer));*/
+        TrainerEntity trainerEntity = trainerService.getLogged();
+        cardList.forEach(value -> addCard(value, trainerEntity));
 
     }
 

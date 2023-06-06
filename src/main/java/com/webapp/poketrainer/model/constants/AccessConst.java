@@ -1,5 +1,8 @@
 package com.webapp.poketrainer.model.constants;
 
+/**
+ * Spring Security Settings - PUBLIC, USER & ADMIN request Matchers
+ */
 public class AccessConst {
     public final static String[] RESOURCES_PUBLIC = {
             "/css/**",

@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service responsible for handling Pokemon Database queries
+ */
 @Service
 @Transactional
 public class PokemonService {

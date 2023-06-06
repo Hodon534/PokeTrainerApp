@@ -27,11 +27,14 @@ public class CardEntity implements Serializable {
     public CardEntity(
             String id,
             String name,
-            String smallImage)
+            String smallImage,
+            TrainerEntity trainer)
     {
         this.id = id;
         this.name = name;
         this.smallImage = smallImage;
+        this.trainer = trainer;
     }
+
 
 }

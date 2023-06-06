@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+/**
+ * Service responsible for registering new users
+ */
 @Service
 @AllArgsConstructor
 public class RegistrationService {

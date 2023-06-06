@@ -61,12 +61,10 @@ class UserServiceTest {
     }
 
     @Test
-    @Disabled
     void singUpUser() {
     }
 
     @Test
-    @Disabled
     void enableUser() {
     }
 }

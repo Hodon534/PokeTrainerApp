@@ -26,8 +26,8 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException(String.format(ExceptionConst.USER_NOT_FOUND_MESSAGE, email)));
+                .orElseThrow(
+                        () -> new UsernameNotFoundException(String.format(ExceptionConst.USER_NOT_FOUND_MESSAGE, email)));
     }
 
     public String singUpUser(UserEntity user) {

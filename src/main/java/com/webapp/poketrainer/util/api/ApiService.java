@@ -3,13 +3,13 @@ package com.webapp.poketrainer.util.api;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
- * Service responsible for making API requests to external sites
+ * Class responsible for making API requests to external sites
  */
-@Service
+@Component
 @AllArgsConstructor
 public class ApiService {
 

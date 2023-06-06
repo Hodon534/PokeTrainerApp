@@ -1,44 +1,81 @@
 package com.webapp.poketrainer.util.api;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import net.joshka.junit.json.params.JsonFileSource;
-import org.junit.jupiter.api.Disabled;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.boot.test.json.JsonContent;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.json.JsonObject;
-import java.io.IOException;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@JsonTest
+
 @AllArgsConstructor
 class ApiServiceTest {
 
     @Autowired
-    private JacksonTester<String> jacksonTester;
-    @Autowired
-    private ApiService apiService;
+    private final ApiService underTest = new ApiService(WebClient.builder().build());
 
-    //@Test
-    @ParameterizedTest
-    @JsonFileSource(resources = "/json/cards.json")
-    @Disabled
-    void requestData(JsonObject jsonObject) throws IOException {
+    @Test
+    void requestPokemonCardsData() throws JSONException {
         // given
         String url = "https://api.pokemontcg.io/v2/cards?page=2618&pageSize=1";
-        String id = "ex5-19";
+        String jsonArrayName = "data";
+        int i = 0;
         // when
-        JsonContent<String> jsonAsString = jacksonTester.write(apiService.requestData(url));
-        System.out.println(jsonAsString);
+        String response = underTest.requestData(url);
+        JSONObject jsonObject = new JSONObject(response);
+        JSONArray basicData = jsonObject.getJSONArray(jsonArrayName);
+        String expectedId = "ex5-19";
+        String responseId = basicData.getJSONObject(i).getString("id");
+        String expectedName = "Huntail";
+        String responseName = basicData.getJSONObject(i).getString("name");
+        String expectedSmallImage = "https://images.pokemontcg.io/ex5/19.png";
+        String responseSmallImage = basicData.getJSONObject(i).getJSONObject("images").getString("small");
         // then
-        assertThat(jsonAsString).extractingJsonPathStringValue("$.id").isEqualTo(id);
-        assertThat(jsonAsString).isEqualToJson((CharSequence) jsonObject);
+        assertAll(
+                () -> assertEquals(expectedId, responseId),
+                () -> assertEquals(expectedName, responseName),
+                () -> assertEquals(expectedSmallImage, responseSmallImage)
+        );
+    }
+
+    @Test
+    void requestPokemonData() throws JSONException {
+        // given
+        String url = "https://pokeapi.co/api/v2/pokemon/1";
+        // when
+        String response = underTest.requestData(url);
+        JSONObject jsonObject = new JSONObject(response);
+        long expectedId = 1L;
+        long responseId = jsonObject.getLong("id");
+        String expectedName = "bulbasaur";
+        String responseName = jsonObject.getString("name");
+        long expectedHeight = 7L;
+        long responseHeight = jsonObject.getLong("height");
+        long expectedWeight = 69L;
+        long responseWeight = jsonObject.getLong("weight");
+        long expectedBaseExperience = 64L;
+        long responseBaseExperience = jsonObject.getLong("base_experience");
+        String expectedBigImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg";
+        String responseBigImage = jsonObject
+                .getJSONObject("sprites")
+                .getJSONObject("other")
+                .getJSONObject("dream_world")
+                .getString("front_default");
+        // then
+        assertAll(
+                () -> assertEquals(expectedId, responseId),
+                () -> assertEquals(expectedName, responseName),
+                () -> assertEquals(expectedHeight, responseHeight),
+                () -> assertEquals(expectedWeight, responseWeight),
+                () -> assertEquals(expectedBaseExperience, responseBaseExperience),
+                () -> assertEquals(expectedBigImage, responseBigImage)
+        );
     }
 }

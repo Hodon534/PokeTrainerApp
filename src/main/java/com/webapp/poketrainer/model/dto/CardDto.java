@@ -11,4 +11,5 @@ public class CardDto {
     private String id;
     private String name;
     private String smallImage;
+    private Long trainerId;
 }

@@ -7,6 +7,7 @@ import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.card.Card;
 import com.webapp.poketrainer.model.pojo.card.CardList;
 import com.webapp.poketrainer.repository.TrainerRepository;
+import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,17 +24,19 @@ import java.util.Optional;
 @Component
 public class CardMapper {
     private final ObjectMapper objectMapper;
+    private final TrainerService trainerService;
 
     /**
      * Map Card from CardList from pokeapi.co into database appropriate entity
      * @param card from CardList
      * @return CardEntity
      */
-    public CardEntity pojoToEntity(Card card) {
+    public CardEntity pojoToEntity(Card card, TrainerEntity trainerEntity) {
         return new CardEntity(
                 card.getId(),
                 card.getName(),
-                card.getImages().getSmall());
+                card.getImages().getSmall(),
+                trainerEntity);
     }
     /**
      * Map CardEntity to an Object
@@ -44,7 +47,8 @@ public class CardMapper {
         return new CardDto(
                 cardEntity.getId(),
                 cardEntity.getName(),
-                cardEntity.getSmallImage());
+                cardEntity.getSmallImage(),
+                cardEntity.getTrainer().getId());
     }
 
 
@@ -52,18 +56,8 @@ public class CardMapper {
         return new CardEntity(
                 cardDto.getId(),
                 cardDto.getName(),
-                cardDto.getSmallImage());
-    }
-    /**
-     * Map Card from CardList to CardDto
-     * @param card from CardList (POJO)
-     * @return CardDto
-     */
-    public CardDto pojoToDto(Card card) {
-        return new CardDto(
-                card.getId(),
-                card.getName(),
-                card.getImages().getSmall());
+                cardDto.getSmallImage(),
+                trainerService.get(cardDto.getTrainerId()));
     }
 
     /**

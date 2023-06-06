@@ -23,11 +23,11 @@ public class TrainerEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "trainers", cascade = CascadeType.ALL)
-    /*@JoinTable(
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //, mappedBy = "trainers"
+    @JoinTable(
             name = "pokemons_trainers",
             joinColumns = @JoinColumn(name = "trainers_id"),
-            inverseJoinColumns = @JoinColumn(name = "pokemons_id"))*/
+            inverseJoinColumns = @JoinColumn(name = "pokemons_id"))
     private Set<PokemonEntity> pokemons;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL) //, cascade = CascadeType.ALL
     private List<CardEntity> cards;
