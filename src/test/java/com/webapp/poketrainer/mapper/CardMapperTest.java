@@ -6,21 +6,30 @@ import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.card.Card;
 import com.webapp.poketrainer.model.pojo.card.Images;
+import com.webapp.poketrainer.repository.TrainerRepository;
 import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
+@AllArgsConstructor
 class CardMapperTest {
 
     @Autowired
     private static CardMapper underTest;
     @Autowired
     private static TrainerService trainerService;
+    @Mock
+    private static TrainerRepository trainerRepository;
 
     @BeforeAll
     static void beforeAll() {
@@ -36,6 +45,7 @@ class CardMapperTest {
         card.setImages(new Images());
         card.getImages().setSmall("https://images.pokemontcg.io/ex5/19.png");
         TrainerEntity trainerEntity = new TrainerEntity();
+        trainerRepository.save(trainerEntity);
         // when
         CardEntity cardEntity = underTest.pojoToEntity(card, trainerEntity);
         // then
@@ -50,11 +60,13 @@ class CardMapperTest {
     @Test
     void entityToDto() {
         // given
+        TrainerEntity trainerEntity = new TrainerEntity();
+        trainerRepository.save(trainerEntity);
         CardEntity cardEntity = new CardEntity(
                 "ex5-19",
                 "Huntail",
                 "https://images.pokemontcg.io/ex5/19.png",
-                new TrainerEntity()
+                trainerEntity
         );
         // when
         CardDto cardDto = underTest.entityToDto(cardEntity);
@@ -72,6 +84,7 @@ class CardMapperTest {
     void dtoToEntity() {
         // given
         TrainerEntity trainerEntity = new TrainerEntity();
+        trainerRepository.save(trainerEntity);
         CardDto cardDto = new CardDto(
                 "ex5-19",
                 "Huntail",

@@ -40,7 +40,7 @@ public class CardMapper {
     }
     /**
      * Map CardEntity to an Object
-     * @param cardEntity from DataBase
+     //* @param cardEntity from DataBase
      * @return CardDto
      */
     public CardDto entityToDto(CardEntity cardEntity) {

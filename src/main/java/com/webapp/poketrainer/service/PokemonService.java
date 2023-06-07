@@ -37,9 +37,4 @@ public class PokemonService {
         return pokemonDtoList;
     }
 
-/*    public PokemonEntity addTrainerToPokemon(Long id) {
-        if (pokemonRepository.existsById(id)) {
-
-        }
-    }*/
 }

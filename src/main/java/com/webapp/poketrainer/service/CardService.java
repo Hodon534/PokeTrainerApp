@@ -1,7 +1,9 @@
 package com.webapp.poketrainer.service;
 
+import com.webapp.poketrainer.exception.CardsNotFoundException;
 import com.webapp.poketrainer.mapper.CardMapper;
 import com.webapp.poketrainer.model.constants.ApiConst;
+import com.webapp.poketrainer.model.constants.ExceptionConst;
 import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.card.Card;
@@ -41,11 +43,15 @@ public class CardService {
                 cardMapper.pojoToEntity(card, trainerEntity));
     }
 
+
+
     public void deleteCard(String id) {
         cardRepository.deleteById(id);
     }
 
-
+    public List<CardEntity> findAll() {
+        return cardRepository.findAll();
+    }
     public void addRandomCards() throws IOException {
         List<Card> cardList = new ArrayList<>();
         for (int i = 1; i <= ApiConst.CARD_NUMBER_OF_FREE_CARDS; i++) {
@@ -63,7 +69,11 @@ public class CardService {
         }
         TrainerEntity trainerEntity = trainerService.getLogged();
         cardList.forEach(value -> addCard(value, trainerEntity));
+    }
 
+    public List<CardEntity> findAllCardsHeldByLoggedTrainer() {
+        return cardRepository.findByTrainer(trainerService.getLogged()).orElseThrow(
+                () -> new CardsNotFoundException(ExceptionConst.CARDS_NOT_FOUND_EXCEPTION));
     }
 
 }

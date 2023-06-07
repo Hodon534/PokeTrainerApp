@@ -22,7 +22,7 @@ public class ApiService {
      * @return - API response as String
      */
     public String requestData(String url) {
-        System.out.println(url);
+        //System.out.println(url);
         return webClient
                 .get()
                 .uri(url)

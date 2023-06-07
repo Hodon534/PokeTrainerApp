@@ -1,7 +1,10 @@
 package com.webapp.poketrainer.model.enums;
 
 /**
- * -> Number of Pokémon that are available in first generation.
+ * ----- Number of pokémons that are available in specific generation.
+ * - Index at which okemon numbers start
+ * - Index at which pokemon numbers end
+ * - Number of a specific generation
  */
 public enum PokemonGeneration {
     I_GEN(1, 151, "I GEN"),

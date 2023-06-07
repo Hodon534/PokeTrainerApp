@@ -29,7 +29,7 @@ public class TrainerEntity implements Serializable {
             joinColumns = @JoinColumn(name = "trainers_id"),
             inverseJoinColumns = @JoinColumn(name = "pokemons_id"))
     private Set<PokemonEntity> pokemons;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL) //, cascade = CascadeType.ALL
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainer", cascade = CascadeType.ALL)
     private List<CardEntity> cards;
     @Enumerated(EnumType.STRING)
     private TrainerType trainerType;

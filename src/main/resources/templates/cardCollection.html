@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Trainer Application - Contact Page</title>
+    <title>Pokemon Trainer Application - Card Collection</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <!-- favicon start -->
     <link rel="icon" type="image/x-icon" href="/images/pokeball-favicon.png">
     <!-- favicon end -->
+    <style>
+.card-img-top {
+width: 100%;
+height: 45vh;
+object-fit: contain;
+}
+
+.card-poke-type {
+display: inline-block;
+}
+ </style>
 </head>
 <body>
-<!-- menu start -->
 <div class="container-fluid overflow-hidden">
     <div class="row vh-100 overflow-auto">
         <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
@@ -34,12 +44,13 @@
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                             <li><a class="dropdown-item" href="/overview">Overview</a></li>
                             <li><a class="dropdown-item" href="/pokedex">Pokedex</a></li>
+                            <li><a class="dropdown-item" href="/cardCollection">Card Collection</a></li>
                             <li><a class="dropdown-item" href="/login">Shop</a></li>
                             <li><a class="dropdown-item" href="/catch">Catch a Pokemon!</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/freebie">Freebies</a></li>
+                            <li><a class="dropdown-item" href="/freebie">Freebies!</a></li>
                         </ul>
                     </li>
                     <li>
@@ -71,19 +82,24 @@
         <div class="col d-flex flex-column h-sm-100">
             <main class="row overflow-auto">
                 <div class="col pt-4">
-                    <h3>Admin Page</h3>
+                    <h3>Card Collection</h3>
+                    <p class="lead">Test Subtitle</p>
                     <hr />
-                    <h2>Update Pokemon Database</h2>
-                    <form method="get" th:action="@{/api/v1/pokemon/update}">
-                        <div class="form-group">
-                            <label for="pokemonGeneration">Which Pokemon Generation would you like to update?</label>
-                            <select class="form-control" th:name="pokemonGeneration" id="pokemonGeneration">
-                                <option th:each="gen : ${T(com.webapp.poketrainer.model.enums.PokemonGeneration).values()}"
-                                th:value="${gen}" th:text="${gen.getGen()}"></option>
-                            </select>
+
+                    <div class="row">
+                        <div class="col-xl-3" th:each="card : ${cards}">
+                            <div class="card h-100 p-3" style="width: 15rem;">
+                                <img class="card-img-top " th:src="${card.smallImage}" alt="Card image cap">
+                                <div class="card-body">
+                                    <hr>
+                                    <p class="card-title" th:text="${card.id}"></p>
+                                    <p class="card-text" th:text="${card.name}"></p>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
+                    </div>
+
+
                 </div>
             </main>
             <footer class="row bg-light py-4 mt-auto">

@@ -1,17 +1,18 @@
 package com.webapp.poketrainer.service;
 
+import com.webapp.poketrainer.exception.CardsNotFoundException;
 import com.webapp.poketrainer.exception.TrainerNotFoundException;
 import com.webapp.poketrainer.model.constants.ExceptionConst;
+import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.repository.TrainerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -35,4 +36,5 @@ public class TrainerService {
         return trainerRepository.findById(trainerId).orElseThrow(
                 () -> new TrainerNotFoundException(ExceptionConst.TRAINER_DOES_NOT_EXIST_MESSAGE));
     }
+
 }

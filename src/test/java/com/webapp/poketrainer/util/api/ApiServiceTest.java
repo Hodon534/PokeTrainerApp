@@ -1,7 +1,5 @@
 package com.webapp.poketrainer.util.api;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,10 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 
 @AllArgsConstructor
 class ApiServiceTest {

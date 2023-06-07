@@ -10,5 +10,5 @@ public class ExceptionConst {
     public final static String EMAIL_ALREADY_CONFIRMED_MESSAGE = "Email has been already confirmed.";
     public final static String TOKEN_NOT_FOUND_MESSAGE = "Token hasn't been found.";
     public final static String TRAINER_DOES_NOT_EXIST_MESSAGE = "Trainer with that ID doesn't exist.";
-
+    public final static String CARDS_NOT_FOUND_EXCEPTION = "You have no cards in possession.";
 }
