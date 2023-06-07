@@ -12,7 +12,8 @@ Features:
 - Contact Page with Contact Form
 - Downloading Pokemons via Admin Panel
 - Getting random Pokemon Cards
-
+- Adding cards to users
+- Showing pokemons and cards held by specific user
 
       Java project with Bootstrap
 
@@ -33,7 +34,6 @@ Frontend:
 
 To do:
 - Newsletter
-- Adding cards to users
 - Adding pokemons to users
 
 ---

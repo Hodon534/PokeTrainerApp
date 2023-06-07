@@ -10,11 +10,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Repository for Confirmation Tokens
+ */
 @Repository
 public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationTokenEntity, Long> {
 
+    /**
+     * Find confirmation token by providing token sent to user
+     * @param token - String send to user
+     * @return ConfirmationTokenEntity, if any
+     */
     Optional<ConfirmationTokenEntity> findByToken(String token);
 
+    /**
+     * Update confirmation token as confirmed
+     * @param token - String send to user
+     * @param confirmedAt - LocalDateTime at which the user has confirmed their email
+     * @return int (1 = enabled)
+     */
     @Transactional
     @Modifying
     @Query("UPDATE ConfirmationTokenEntity c " +

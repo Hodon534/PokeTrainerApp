@@ -9,11 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Repository for Users
+ */
 @Repository
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+    /**
+     * Find specific user by providing their email
+     * @param email - String (user's email)
+     * @return UserEntity, if any
+     */
     Optional<UserEntity> findByEmail(String email);
 
+    /**
+     * Set user as enabled
+     * @param email - String (user's email)
+     * @return int (1 = enabled)
+     */
     @Transactional
     @Modifying
     @Query("UPDATE UserEntity a " +
