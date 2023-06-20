@@ -1,7 +1,6 @@
-package com.webapp.poketrainer.controller.cont;
+package com.webapp.poketrainer.controller.web;
 
-import com.webapp.poketrainer.controller.interfaces.ModelPage;
-import com.webapp.poketrainer.service.CardService;
+import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @AllArgsConstructor
 @Controller
-public class CardCollectionController implements ModelPage {
-
-    private final CardService cardService;
+public class CardCollectionController {
+    private final TrainerService trainerService;
 
     /**
      * Method responsible for redirecting to card collection page
      * @return cardCollection (cardCollection.html)
      */
     @GetMapping("/cardCollection")
-    @Override
     public String getPage(Model model) {
-        model.addAttribute("cards", cardService.findAllCardsHeldByLoggedTrainer());
+        model.addAttribute("cards", trainerService.findAllCardsHeldByLoggedUser());
         return "cardCollection";
     }
 }

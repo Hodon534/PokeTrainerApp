@@ -12,7 +12,7 @@ public enum PokemonGeneration {
     III_GEN(252, 386, "III GEN"),
     IV_GEN(387, 493, "IV GEN"),
     V_GEN(494, 649, "V GEN"),
-    VI_GEN(650, 721, "VI_GEN"),
+    VI_GEN(650, 721, "VI GEN"),
     VII_GEN(722, 809, "VII GEN"),
     VIII_GEN(810, 905, "VIII GEN"),
     IX_GEN(906, 1016, "IX GEN"),

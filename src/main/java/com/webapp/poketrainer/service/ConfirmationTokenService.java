@@ -21,7 +21,7 @@ public class ConfirmationTokenService {
      * Save ConfirmationToken entity to Database
      * @param token - generated in RegistrationService
      */
-    public void saveConfirmationToken(ConfirmationTokenEntity token) {
+    public void save(ConfirmationTokenEntity token) {
         confirmationTokenRepository.save(token);
     }
 
@@ -30,7 +30,7 @@ public class ConfirmationTokenService {
      * @param token - String that is being sent to user via email
      * @return ConfirmationTokenEntity if available
      */
-    public Optional<ConfirmationTokenEntity> getToken(String token) {
+    public Optional<ConfirmationTokenEntity> get(String token) {
         return confirmationTokenRepository.findByToken(token);
     }
 

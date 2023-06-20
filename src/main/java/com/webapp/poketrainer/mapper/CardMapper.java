@@ -3,16 +3,12 @@ package com.webapp.poketrainer.mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webapp.poketrainer.model.dto.CardDto;
 import com.webapp.poketrainer.model.entity.CardEntity;
-import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.card.Card;
 import com.webapp.poketrainer.model.pojo.card.CardList;
-import com.webapp.poketrainer.repository.TrainerRepository;
-import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * Pokemon Card Mapper:
@@ -24,19 +20,22 @@ import java.util.Optional;
 @Component
 public class CardMapper {
     private final ObjectMapper objectMapper;
-    private final TrainerService trainerService;
+
+    // mapstruct
+    // orika mapper
+    // entity => BO buissiness object - w serwisie
+    // BO => TO DTO data transfer object
 
     /**
      * Map Card from CardList from pokeapi.co into database appropriate entity
      * @param card from CardList
      * @return CardEntity
      */
-    public CardEntity pojoToEntity(Card card, TrainerEntity trainerEntity) {
+    public CardEntity pojoToEntity(Card card) {
         return new CardEntity(
                 card.getId(),
                 card.getName(),
-                card.getImages().getSmall(),
-                trainerEntity);
+                card.getImages().getSmall());
     }
     /**
      * Map CardEntity to an Object
@@ -47,8 +46,7 @@ public class CardMapper {
         return new CardDto(
                 cardEntity.getId(),
                 cardEntity.getName(),
-                cardEntity.getSmallImage(),
-                cardEntity.getTrainer().getId());
+                cardEntity.getSmallImage());
     }
 
 
@@ -56,8 +54,7 @@ public class CardMapper {
         return new CardEntity(
                 cardDto.getId(),
                 cardDto.getName(),
-                cardDto.getSmallImage(),
-                trainerService.get(cardDto.getTrainerId()));
+                cardDto.getSmallImage());
     }
 
     /**

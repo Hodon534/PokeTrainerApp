@@ -3,14 +3,16 @@ package com.webapp.poketrainer.mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webapp.poketrainer.model.dto.PokemonDto;
 import com.webapp.poketrainer.model.entity.PokemonEntity;
+import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.pokemon.Pokemon;
-import com.webapp.poketrainer.model.pojo.pokemon.Type;
+import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.stream.Collectors;
 
 /**
  * Pokemon Mapper:
@@ -22,6 +24,7 @@ import java.util.List;
 @Component
 public class PokemonMapper {
     private final ObjectMapper objectMapper;
+    private final TrainerService trainerService;
 
     /**
      * Map Pokemon Pojo To Entity in DB
@@ -34,24 +37,14 @@ public class PokemonMapper {
                 pokemon.getName(),
                 pokemon.getHeight(),
                 pokemon.getWeight(),
-                getTypesFromPojo(pokemon),
+                Arrays.stream(pokemon.getTypes()).map(value -> value.getType().getName()).toList(),
                 pokemon.getBaseExperience(),
-                pokemon.getSprites().getOther().getDreamWorld().getFrontDefault());
+                pokemon.getSprites().getOther().getDreamWorld().getFrontDefault(),
+                new HashSet<>());
     }
 
     /**
-     * Extract pokemon types and return 'em as a list
-     */
-    private List<String> getTypesFromPojo(Pokemon pokemon) {
-        List<String> types = new ArrayList<>();
-        for (Type type : pokemon.getTypes()) {
-            types.add(type.getType().getName());
-        }
-        return types;
-    }
-
-    /**
-     * Map PokemonEntity to Pokemon Dto
+     * Map PokemonEntity to PokemonDto
      * @param pokemonEntity - entity from DB
      * @return PokemonDto - Object of Pokemon
      */
@@ -63,9 +56,15 @@ public class PokemonMapper {
                 pokemonEntity.getWeight(),
                 pokemonEntity.getPokemonTypes(),
                 pokemonEntity.getBaseExperience(),
-                pokemonEntity.getBigImage());
+                pokemonEntity.getBigImage(),
+                pokemonEntity.getTrainers().stream().map(TrainerEntity::getId).collect(Collectors.toSet()));
     }
 
+    /**
+     * Map PokemonDto to PokemonEntity
+     * @param pokemonDto - Object of Pokemon
+     * @return PokemonEntity - entity from DB
+     */
     public PokemonEntity dtoToEntity(PokemonDto pokemonDto) {
         return new PokemonEntity(
                 pokemonDto.getId(),
@@ -74,7 +73,8 @@ public class PokemonMapper {
                 pokemonDto.getWeight(),
                 pokemonDto.getTypes(),
                 pokemonDto.getBaseExperience(),
-                pokemonDto.getBigImage()
+                pokemonDto.getBigImage(),
+                pokemonDto.getTrainers().stream().map(trainerService::get).collect(Collectors.toSet())
         );
     }
 

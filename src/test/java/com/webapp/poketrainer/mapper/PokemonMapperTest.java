@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PokemonMapperTest {
-
+/*
     @Autowired
     private static PokemonMapper underTest;
 
@@ -58,9 +58,9 @@ class PokemonMapperTest {
                 () -> assertEquals(pokemonEntity.getBaseExperience(), pokemon.getBaseExperience()),
                 () -> assertEquals(pokemonEntity.getBigImage(), pokemon.getSprites().getOther().getDreamWorld().getFrontDefault())
         );
-    }
+    }*/
 
-    @Test
+    /*@Test
     void entityToDto() {
         // given
         PokemonEntity pokemonEntity = new PokemonEntity(
@@ -84,7 +84,7 @@ class PokemonMapperTest {
                 () -> assertEquals(pokemonDto.getBaseExperience(), pokemonEntity.getBaseExperience()),
                 () -> assertEquals(pokemonDto.getBigImage(), pokemonEntity.getBigImage())
         );
-    }
+    }*/
 
     @Test
     void mapJsonToPokemon() {

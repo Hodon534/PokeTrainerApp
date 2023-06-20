@@ -61,10 +61,8 @@ public class ContactFormService {
      * @return String (body of a message)
      */
     private static String getBodyOfMessageToAdmin(ContactFormDto contactForm) {
-        StringBuilder bodyOfMessageToAdmin = new StringBuilder(
-                "Email from: " + contactForm.getEmail()
-                        + "\nSubject: " + contactForm.getSubject()
-                        + "\nMessage: " + contactForm.getMessage());
-        return bodyOfMessageToAdmin.toString();
+        return "Email from: " + contactForm.getEmail()
+                + "\nSubject: " + contactForm.getSubject()
+                + "\nMessage: " + contactForm.getMessage();
     }
 }

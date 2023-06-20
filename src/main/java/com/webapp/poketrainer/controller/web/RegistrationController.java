@@ -1,9 +1,9 @@
-package com.webapp.poketrainer.controller.cont;
+package com.webapp.poketrainer.controller.web;
 
-import com.webapp.poketrainer.controller.interfaces.ModelPage;
 import com.webapp.poketrainer.model.dto.RegistrationRequestDto;
 import com.webapp.poketrainer.service.RegistrationService;
 import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 @AllArgsConstructor
-public class RegistrationController implements ModelPage {
+public class RegistrationController {
     private RegistrationService registrationService;
 
     /**
@@ -22,7 +22,6 @@ public class RegistrationController implements ModelPage {
      * @param model - RegistrationRequestDto
      * @return register (register.html)
      */
-    @Override
     @GetMapping("/register")
     public String getPage(Model model) {
         RegistrationRequestDto request = new RegistrationRequestDto();
@@ -33,12 +32,11 @@ public class RegistrationController implements ModelPage {
     /**
      * Method responsible for parsing Registration Request from website into proper service (RegistrationService)
      * @param request filled on website
-     * @param model
      * @return request
      * @throws MessagingException
      */
-    @PostMapping("/register")
-    public String register(@ModelAttribute("registrationRequest") RegistrationRequestDto request, Model model) throws MessagingException {
+    @PostMapping("/register") // javax validation
+    public String register(@ModelAttribute("registrationRequest") @Valid RegistrationRequestDto request) throws MessagingException {
         return registrationService.register(request);
     }
 

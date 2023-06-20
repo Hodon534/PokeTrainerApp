@@ -1,9 +1,11 @@
 package com.webapp.poketrainer.service;
 
-import com.webapp.poketrainer.exception.CardsNotFoundException;
+import com.webapp.poketrainer.exception.CardException;
 import com.webapp.poketrainer.mapper.CardMapper;
 import com.webapp.poketrainer.model.constants.ApiConst;
 import com.webapp.poketrainer.model.constants.ExceptionConst;
+import com.webapp.poketrainer.model.constants.LogConst;
+import com.webapp.poketrainer.model.dto.CardDto;
 import com.webapp.poketrainer.model.entity.CardEntity;
 import com.webapp.poketrainer.model.entity.TrainerEntity;
 import com.webapp.poketrainer.model.pojo.card.Card;
@@ -11,6 +13,7 @@ import com.webapp.poketrainer.model.pojo.card.CardList;
 import com.webapp.poketrainer.repository.CardRepository;
 import com.webapp.poketrainer.util.api.ApiCardLinkCreator;
 import com.webapp.poketrainer.util.api.ApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,38 +24,44 @@ import java.util.Random;
 
 @Transactional
 @Service
+@Slf4j
 public class CardService {
     private final CardMapper cardMapper;
     private final CardRepository cardRepository;
     private final ApiService apiService;
     private final ApiCardLinkCreator apiCardLinkCreator;
     private final Random random;
-    private final TrainerService trainerService;
-
-    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator, TrainerService trainerService) {
+    public CardService(CardMapper cardMapper, CardRepository cardRepository, ApiService apiService, ApiCardLinkCreator apiCardLinkCreator) {
         this.cardMapper = cardMapper;
         this.cardRepository = cardRepository;
         this.apiService = apiService;
         this.apiCardLinkCreator = apiCardLinkCreator;
-        this.trainerService = trainerService;
         this.random = new Random();
     }
 
-    public CardEntity addCard(Card card, TrainerEntity trainerEntity) {
+    public CardEntity add(Card card) {
         return cardRepository.save(
-                cardMapper.pojoToEntity(card, trainerEntity));
+                cardMapper.pojoToEntity(card));
     }
 
+    public CardEntity get(String id) {
+        return cardRepository.findById(id).orElseThrow(
+                () -> new CardException(String.format(ExceptionConst.CARD_NOT_FOUND_EXCEPTION, id))
+        );
+    }
 
+    public boolean exist(String id) {
+        return cardRepository.existsById(id);
+    }
 
-    public void deleteCard(String id) {
+    public void delete(String id) {
         cardRepository.deleteById(id);
     }
 
     public List<CardEntity> findAll() {
         return cardRepository.findAll();
     }
-    public void addRandomCards() throws IOException {
+    public List<Card> getRandomCards() throws IOException {
         List<Card> cardList = new ArrayList<>();
         for (int i = 1; i <= ApiConst.CARD_NUMBER_OF_FREE_CARDS; i++) {
             CardList cards = cardMapper.mapJsonToCardList(
@@ -67,13 +76,12 @@ public class CardService {
                             .stream()
                             .toList());
         }
-        TrainerEntity trainerEntity = trainerService.getLogged();
-        cardList.forEach(value -> addCard(value, trainerEntity));
+        cardList.forEach(entry -> {
+            if (!exist(entry.getId())) {
+                add(entry);
+            }
+        });
+        log.info(LogConst.CARD_ALL_ADDED_SUCCESSFULLY);
+        return cardList;
     }
-
-    public List<CardEntity> findAllCardsHeldByLoggedTrainer() {
-        return cardRepository.findByTrainer(trainerService.getLogged()).orElseThrow(
-                () -> new CardsNotFoundException(ExceptionConst.CARDS_NOT_FOUND_EXCEPTION));
-    }
-
 }

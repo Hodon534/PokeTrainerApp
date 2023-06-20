@@ -14,7 +14,7 @@
     <style>
 .card-img-top {
 width: 100%;
-height: 45vh;
+height: 40vh;
 object-fit: contain;
 }
 
@@ -50,7 +50,7 @@ display: inline-block;
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/freebie">Freebies!</a></li>
+                            <li><a class="dropdown-item" href="/freebies">Freebies!</a></li>
                         </ul>
                     </li>
                     <li>
@@ -89,11 +89,12 @@ display: inline-block;
                     <div class="row">
                         <div class="col-xl-3" th:each="card : ${cards}">
                             <div class="card h-100 p-3" style="width: 15rem;">
-                                <img class="card-img-top " th:src="${card.smallImage}" alt="Card image cap">
+                                <img class="card-img-top " th:src="${card.key.smallImage}" alt="Card image cap">
                                 <div class="card-body">
                                     <hr>
-                                    <p class="card-title" th:text="${card.id}"></p>
-                                    <p class="card-text" th:text="${card.name}"></p>
+                                    <p class="card-title" th:text="${card.key.id}"></p>
+                                    <p class="card-text" th:text="${card.key.name}"></p>
+                                    <p class="card-text" th:text="${card.value}"></p>
                                 </div>
                             </div>
                         </div>

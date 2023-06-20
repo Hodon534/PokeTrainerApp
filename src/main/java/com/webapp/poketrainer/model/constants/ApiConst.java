@@ -5,27 +5,28 @@ package com.webapp.poketrainer.model.constants;
  */
 public class ApiConst {
 
+    private ApiConst(){}
     /**
      * Pokemons Database
      * pokeapi.co base link
      */
-    public final static String POKEMON_API_BASE_LINK = "https://pokeapi.co/api/v2/";
-    public final static String POKEMON_API_POKEMON_TEXT = "pokemon";
+    public static final String POKEMON_API_BASE_LINK = "https://pokeapi.co/api/v2/";
+    public static final String POKEMON_API_POKEMON_TEXT = "pokemon";
     /**
      * Pokemon Cards Database
      * api.pokemontcg.io base link
      */
-    public final static String CARD_API_BASE_LINK = "https://api.pokemontcg.io/v2/cards";
-    public final static String CARD_API_PAGE_TEXT = "page";
-    public final static int CARD_API_PAGE_VALUE = 16125;
-    public final static String CARD_API_PAGE_SIZE_TEXT = "pageSize";
-    public final static int CARD_API_PAGE_SIZE_VALUE = 1;
-    public final static int CARD_NUMBER_OF_FREE_CARDS = 5;
+    public static final String CARD_API_BASE_LINK = "https://api.pokemontcg.io/v2/cards";
+    public static final String CARD_API_PAGE_TEXT = "page";
+    public static final int CARD_API_PAGE_VALUE = 16125;
+    public static final String CARD_API_PAGE_SIZE_TEXT = "pageSize";
+    public static final int CARD_API_PAGE_SIZE_VALUE = 1;
+    public static final int CARD_NUMBER_OF_FREE_CARDS = 5;
     /**
      * Signs that are being used while creating urls for API requests
      */
-    public final static String SIGN_SLASH = "/";
-    public final static String SIGN_EQUALS = "=";
-    public final static String SIGN_AND = "&";
-    public final static String SIGN_QUESTION_MARK = "?";
+    public static final String SIGN_SLASH = "/";
+    public static final String SIGN_EQUALS = "=";
+    public static final String SIGN_AND = "&";
+    public static final String SIGN_QUESTION_MARK = "?";
 }

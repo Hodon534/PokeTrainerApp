@@ -1,5 +1,6 @@
 package com.webapp.poketrainer.service;
 
+import com.webapp.poketrainer.model.constants.LogConst;
 import com.webapp.poketrainer.service.interfaces.EmailBuilder;
 import com.webapp.poketrainer.service.interfaces.EmailSender;
 import jakarta.mail.Address;
@@ -8,6 +9,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
+@Slf4j
 public class EmailService implements EmailSender, EmailBuilder {
     private final JavaMailSender javaMailSender;
 
@@ -29,6 +32,7 @@ public class EmailService implements EmailSender, EmailBuilder {
     @Override
     public void send(MimeMessage mimeMessage) throws MessagingException {
         javaMailSender.send(mimeMessage);
+        log.info(LogConst.EMAIL_HAS_BEEN_SENT);
     }
 
     /**

@@ -23,15 +23,19 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    @Column(nullable = false)
     private String username;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
+    @Column(name = "app_user_role", nullable = false)
     private UserRole appUserRole;
-    private Boolean locked = false;
-    private Boolean enabled = false;
+    private boolean locked = false;
+    private boolean enabled = false;
     @OneToOne(cascade=CascadeType.ALL)
-    private TrainerEntity trainerEntity;
+    private TrainerEntity trainer;
 
     public UserEntity(String username,
                       String email,
@@ -42,7 +46,7 @@ public class UserEntity implements UserDetails {
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.trainerEntity = new TrainerEntity(username, this);
+        this.trainer = new TrainerEntity(username, this);
     }
 
     @Override

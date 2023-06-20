@@ -1,9 +1,9 @@
-package com.webapp.poketrainer.controller.cont;
+package com.webapp.poketrainer.controller.web;
 
-import com.webapp.poketrainer.controller.interfaces.ModelPage;
 import com.webapp.poketrainer.model.dto.ContactFormDto;
 import com.webapp.poketrainer.service.ContactFormService;
 import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 @AllArgsConstructor
-public class ContactController implements ModelPage {
+public class ContactController {
 
     private ContactFormService contactFormService;
 
@@ -25,7 +25,6 @@ public class ContactController implements ModelPage {
      * @param model - ContactFormDto
      * @return contact (contact.html)
      */
-    @Override
     @GetMapping("/contact")
     public String getPage(Model model) {
         ContactFormDto contactForm = new ContactFormDto();
@@ -36,11 +35,10 @@ public class ContactController implements ModelPage {
     /**
      * Method responsible for parsing Contact Form from website into proper service (ContactFormService)
      * @param contactForm filled on website
-     * @param model
      * @throws MessagingException
      */
     @PostMapping("/contact")
-    public void postContactForm(@ModelAttribute("contactForm") ContactFormDto contactForm, Model model) throws MessagingException {
+    public void postContactForm(@ModelAttribute("contactForm") @Valid ContactFormDto contactForm) throws MessagingException {
         contactFormService.sendEmail(contactForm);
     }
 }

@@ -18,20 +18,20 @@ public class ConfirmationTokenEntity {
     private Long id;
     @Column(nullable = false)
     private String token;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "created_at")
     private LocalDateTime createdAt;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "expires_at")
     private LocalDateTime expiresAt;
+    @Column(name = "confirmed_at")
     private LocalDateTime confirmedAt;
     @ManyToOne
-    @JoinColumn(nullable = false)
-    private UserEntity userEntity;
+    private UserEntity user;
 
-    public ConfirmationTokenEntity(String token, LocalDateTime createdAt, LocalDateTime expiresAt, UserEntity userEntity) {
+    public ConfirmationTokenEntity(String token, LocalDateTime createdAt, LocalDateTime expiresAt, UserEntity user) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.userEntity = userEntity;
+        this.user = user;
     }
 
 }

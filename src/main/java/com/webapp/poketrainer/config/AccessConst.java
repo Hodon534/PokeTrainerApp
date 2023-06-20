@@ -1,13 +1,15 @@
-package com.webapp.poketrainer.model.constants;
+package com.webapp.poketrainer.config;
 
 /**
  * Spring Security Settings - PUBLIC, USER & ADMIN request Matchers
  */
-public class AccessConst {
+class AccessConst {
+
+    private AccessConst(){}
     /**
      * Public resources, available for everyone
      */
-    public final static String[] RESOURCES_PUBLIC = {
+    protected static final String[] RESOURCES_PUBLIC = {
             "/css/**",
             "/images/**",
             "/js/**",
@@ -23,7 +25,7 @@ public class AccessConst {
     /**
      * User resources, available for registered and confirmed users
      */
-    public final static String[] RESOURCES_USER = {
+    protected static final String[] RESOURCES_USER = {
             "/overview",
             "/cardCollection",
             "/catch",
@@ -38,7 +40,7 @@ public class AccessConst {
     /**
      * Admin resources, available for admin
      */
-    public final static String[] RESOURCES_ADMIN = {
+    protected static final String[] RESOURCES_ADMIN = {
             "/admin",
             "/**"
     };

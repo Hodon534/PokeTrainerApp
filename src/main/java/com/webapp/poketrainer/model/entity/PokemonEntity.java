@@ -16,22 +16,23 @@ import java.util.Set;
 public class PokemonEntity implements Serializable {
     @Id
     private Long id;
-    @Column(name="Name")
+    @Column(nullable = false)
     private String name;
-    @Column(name="Height")
+    @Column(nullable = false)
     private Long height;
-    @Column(name="Weight")
+    @Column(nullable = false)
     private Long weight;
-    @Column(name="Types")
+    @Column(name = "types", nullable = false)
     private List<String> pokemonTypes;
-    @Column(name="Base Experience")
+    @Column(name="base_experience", nullable = false)
     private Long baseExperience;
-    @Column(name="Big Image")
+    @Column(name="big_image")
     private String bigImage;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<TrainerEntity> trainers;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "pokemons", cascade = CascadeType.ALL)
+    private Set<TrainerEntity> trainers;// = new HashSet<>();
 
-    public PokemonEntity(Long id, String name, Long height, Long weight, List<String> pokemonTypes, Long baseExperience, String bigImage) {
+
+    public PokemonEntity(Long id, String name, Long height, Long weight, List<String> pokemonTypes, Long baseExperience, String bigImage, Set<TrainerEntity> trainers) {
         this.id = id;
         this.name = name;
         this.height = height;
@@ -39,5 +40,6 @@ public class PokemonEntity implements Serializable {
         this.pokemonTypes = pokemonTypes;
         this.baseExperience = baseExperience;
         this.bigImage = bigImage;
+        this.trainers = trainers;
     }
 }

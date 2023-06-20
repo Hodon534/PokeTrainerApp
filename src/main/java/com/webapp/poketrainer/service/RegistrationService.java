@@ -1,16 +1,17 @@
 package com.webapp.poketrainer.service;
 
-import com.webapp.poketrainer.exception.EmailAlreadyConfirmedException;
-import com.webapp.poketrainer.exception.TokenExpiredException;
-import com.webapp.poketrainer.exception.TokenNotFoundException;
+import com.webapp.poketrainer.exception.EmailException;
+import com.webapp.poketrainer.exception.TokenException;
 import com.webapp.poketrainer.model.constants.EmailConst;
 import com.webapp.poketrainer.model.constants.ExceptionConst;
+import com.webapp.poketrainer.model.constants.LogConst;
 import com.webapp.poketrainer.model.dto.RegistrationRequestDto;
 import com.webapp.poketrainer.model.entity.ConfirmationTokenEntity;
 import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.UserRole;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
  */
 @Service
 @AllArgsConstructor
+@Slf4j
 public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailService;
@@ -37,6 +39,7 @@ public class RegistrationService {
                     UserRole.USER
         ));
         sendToken(request, token);
+        log.info(LogConst.USER_NEW_REGISTERED);
         return "register";
     }
 
@@ -53,23 +56,23 @@ public class RegistrationService {
     @Transactional
     public String confirmToken(String token) {
         ConfirmationTokenEntity confirmationToken = confirmationTokenService
-                .getToken(token)
+                .get(token)
                 .orElseThrow(() ->
-                        new TokenNotFoundException(ExceptionConst.TOKEN_NOT_FOUND_MESSAGE));
+                        new TokenException(ExceptionConst.TOKEN_NOT_FOUND_MESSAGE));
 
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new EmailAlreadyConfirmedException(ExceptionConst.EMAIL_ALREADY_CONFIRMED_MESSAGE);
+            throw new EmailException(ExceptionConst.EMAIL_ALREADY_CONFIRMED_MESSAGE);
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new TokenExpiredException(ExceptionConst.TOKEN_EXPIRED_MESSAGE);
+            throw new TokenException(ExceptionConst.TOKEN_EXPIRED_MESSAGE);
         }
 
         confirmationTokenService.setConfirmedAt(token);
         userService.enableUser(
-                confirmationToken.getUserEntity().getEmail());
+                confirmationToken.getUser().getEmail());
         return "confirmed";
     }
 }

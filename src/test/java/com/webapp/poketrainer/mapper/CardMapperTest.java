@@ -44,29 +44,23 @@ class CardMapperTest {
         card.setName("Huntail");
         card.setImages(new Images());
         card.getImages().setSmall("https://images.pokemontcg.io/ex5/19.png");
-        TrainerEntity trainerEntity = new TrainerEntity();
-        trainerRepository.save(trainerEntity);
         // when
-        CardEntity cardEntity = underTest.pojoToEntity(card, trainerEntity);
+        CardEntity cardEntity = underTest.pojoToEntity(card);
         // then
         assertAll(
                 () -> assertEquals(cardEntity.getId(), card.getId()),
                 () -> assertEquals(cardEntity.getName(), card.getName()),
-                () -> assertEquals(cardEntity.getSmallImage(), card.getImages().getSmall()),
-                () -> assertEquals(cardEntity.getTrainer(), trainerEntity)
+                () -> assertEquals(cardEntity.getSmallImage(), card.getImages().getSmall())
         );
     }
 
     @Test
     void entityToDto() {
         // given
-        TrainerEntity trainerEntity = new TrainerEntity();
-        trainerRepository.save(trainerEntity);
         CardEntity cardEntity = new CardEntity(
                 "ex5-19",
                 "Huntail",
-                "https://images.pokemontcg.io/ex5/19.png",
-                trainerEntity
+                "https://images.pokemontcg.io/ex5/19.png"
         );
         // when
         CardDto cardDto = underTest.entityToDto(cardEntity);
@@ -74,8 +68,7 @@ class CardMapperTest {
         assertAll(
                 () -> assertEquals(cardDto.getId(), cardEntity.getId()),
                 () -> assertEquals(cardDto.getName(), cardEntity.getName()),
-                () -> assertEquals(cardDto.getSmallImage(), cardEntity.getSmallImage()),
-                () -> assertEquals(cardDto.getTrainerId(), cardEntity.getTrainer().getId())
+                () -> assertEquals(cardDto.getSmallImage(), cardEntity.getSmallImage())
         );
     }
 
@@ -83,13 +76,10 @@ class CardMapperTest {
     @Disabled
     void dtoToEntity() {
         // given
-        TrainerEntity trainerEntity = new TrainerEntity();
-        trainerRepository.save(trainerEntity);
         CardDto cardDto = new CardDto(
                 "ex5-19",
                 "Huntail",
-                "https://images.pokemontcg.io/ex5/19.png",
-                trainerEntity.getId()
+                "https://images.pokemontcg.io/ex5/19.png"
         );
         // when
         CardEntity cardEntity = underTest.dtoToEntity(cardDto);
@@ -97,8 +87,7 @@ class CardMapperTest {
         assertAll(
                 () -> assertEquals(cardEntity.getId(), cardDto.getId()),
                 () -> assertEquals(cardEntity.getName(), cardDto.getName()),
-                () -> assertEquals(cardEntity.getSmallImage(), cardDto.getSmallImage()),
-                () -> assertEquals(cardEntity.getTrainer(), trainerEntity)
+                () -> assertEquals(cardEntity.getSmallImage(), cardDto.getSmallImage())
         );
     }
 

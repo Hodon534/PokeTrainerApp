@@ -7,15 +7,25 @@ import lombok.Data;
 
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+/**
+ * Trainer's Object (DTO):
+ *  long - id,
+ *  String - name,
+ *  Map<String, Integer> - cards,
+ *  Set<Long> - pokemons,
+ *  TrainerType - trainerType,
+ *  long - user id;
+ */
 @Data
 @AllArgsConstructor
 public class TrainerDto {
-    private Long id;
+    private long id;
     private String name;
-    private List<CardDto> cards;
-    private List<PokemonDto> pokemons;
+    private Map<String, Integer> cards;
+    private Set<Long> pokemons;
     private TrainerType trainerType;
-    private UserEntity userEntity;
-
+    private long user;
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -15,24 +14,19 @@ import java.util.List;
 @Table(name = "pokemon_cards")
 public class CardEntity implements Serializable {
     @Id
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private String id;
+    @Column(nullable = false)
     private String name;
-    @Column(name="Small Image")
+    @Column(name="small_image", nullable = false)
     private String smallImage;
-    @OneToOne(fetch = FetchType.EAGER)
-    private TrainerEntity trainer;
     public CardEntity(
             String id,
             String name,
-            String smallImage,
-            TrainerEntity trainer)
+            String smallImage)
     {
         this.id = id;
         this.name = name;
         this.smallImage = smallImage;
-        this.trainer = trainer;
     }
-
-
-}
+    }
