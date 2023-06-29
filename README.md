@@ -4,6 +4,8 @@ For learning purposes
 
 Downloading Data from https://pokeapi.co/ and https://api.pokemontcg.io/
 
+<img height="700" src="https://i.imgur.com/RjXXP9W.png"/>
+
 Features:
 
 - Login
