@@ -12,6 +12,9 @@ public class ApiConst {
      */
     public static final String POKEMON_API_BASE_LINK = "https://pokeapi.co/api/v2/";
     public static final String POKEMON_API_POKEMON_TEXT = "pokemon";
+    public static final String POKEMON_API_GENDER_TEXT = "gender";
+    public static final String POKEMON_API_EVOLUTION_TEXT = "evolution-chain";
+    public static final String POKEMON_API_CHARACTERISTIC_TEXT = "characteristic";
     /**
      * Pokemon Cards Database
      * api.pokemontcg.io base link

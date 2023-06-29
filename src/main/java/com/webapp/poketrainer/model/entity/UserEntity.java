@@ -23,10 +23,13 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    /**
+     * Username - email Address
+     */
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
-    private String email;
+    private String nickname;
     @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
@@ -38,15 +41,15 @@ public class UserEntity implements UserDetails {
     private TrainerEntity trainer;
 
     public UserEntity(String username,
-                      String email,
+                      String nickname,
                       String password,
                       UserRole appUserRole
     ) {
         this.username = username;
-        this.email = email;
+        this.nickname = nickname;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.trainer = new TrainerEntity(username, this);
+        this.trainer = new TrainerEntity(nickname, this);
     }
 
     @Override

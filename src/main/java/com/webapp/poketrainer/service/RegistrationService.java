@@ -34,7 +34,7 @@ public class RegistrationService {
         String token = userService.singUpUser(
                 new UserEntity(
                     request.getUsername(),
-                    request.getEmail(),
+                    request.getNickname(),
                     bCryptPasswordEncoder.encode(request.getPassword()),
                     UserRole.USER
         ));
@@ -48,7 +48,7 @@ public class RegistrationService {
         emailService.send(
                 emailService.build(
                         EmailConst.ADMIN_EMAIL_ADDRESS,
-                        request.getEmail(),
+                        request.getUsername(),
                         EmailConst.TOKEN_MESSAGE_SUBJECT,
                         EmailConst.TOKEN_MESSAGE_BODY + link));
     }
@@ -72,7 +72,7 @@ public class RegistrationService {
 
         confirmationTokenService.setConfirmedAt(token);
         userService.enableUser(
-                confirmationToken.getUser().getEmail());
+                confirmationToken.getUser().getUsername());
         return "confirmed";
     }
 }

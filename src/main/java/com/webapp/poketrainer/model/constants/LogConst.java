@@ -9,5 +9,6 @@ public class LogConst {
     public static final String USER_NEW_REGISTERED = "New user has just registered successfully";
     public static final String TRAINER_HAS_BEEN_UPDATED = "Trainer has been successfully updated";
     public static final String EMAIL_HAS_BEEN_SENT = "Email message has been sent";
+    public static final String TOKEN_CONFIRMED = "Confirmation token has been successfully confirmed";
 
 }

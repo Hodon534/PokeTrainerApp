@@ -2,6 +2,7 @@ package com.webapp.poketrainer.model.entity;
 
 import com.webapp.poketrainer.model.enums.TrainerType;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,9 +27,9 @@ public class TrainerEntity implements Serializable {
             name = "pokemons_trainers",
             joinColumns = @JoinColumn(name = "trainers_id"),
             inverseJoinColumns = @JoinColumn(name = "pokemons_id"))
-    private Set<PokemonEntity> pokemons;// = new HashSet<>();
+    private Set<PokemonEntity> pokemons = new HashSet<>();
     @ElementCollection(fetch = FetchType.EAGER)
-    private Map<CardEntity, Integer> cards;// = new HashMap<>();
+    private Map<CardEntity, Integer> cards = new HashMap<>();
     @Enumerated(EnumType.STRING)
     @Column(name = "trainer_type", nullable = false)
     private TrainerType trainerType;

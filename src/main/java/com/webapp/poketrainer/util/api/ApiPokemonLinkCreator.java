@@ -14,4 +14,11 @@ public class ApiPokemonLinkCreator implements ApiLinkCreator {
                 + ApiConst.SIGN_SLASH
                 + value;
     }
+
+    public String createLinkCharacteristic(int value) {
+        return ApiConst.POKEMON_API_BASE_LINK
+                + ApiConst.POKEMON_API_CHARACTERISTIC_TEXT
+                + ApiConst.SIGN_SLASH
+                + value;
+    }
 }

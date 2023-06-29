@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      * @param email - String (user's email)
      * @return UserEntity, if any
      */
-    Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByUsername(String email);
 
     /**
      * Set user as enabled
@@ -31,6 +31,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE UserEntity a " +
-            "SET a.enabled = TRUE WHERE a.email = ?1")
-    int enableUserEntity(String email);
+            "SET a.enabled = TRUE WHERE a.username = ?1")
+    int enableUserEntity(String username);
 }

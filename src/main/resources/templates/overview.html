@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Trainer Application - Login Page</title>
+    <title>Pokemon Trainer Application - Pokedex</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <!-- favicon start -->
     <link rel="icon" type="image/x-icon" href="/images/pokeball-favicon.png">
     <!-- favicon end -->
+
 </head>
 <style>
     .text-menu {
@@ -18,8 +19,7 @@
     }
 </style>
 <body>
-<!-- menu start -->
-  <div class="container-fluid overflow-hidden">
+<div class="container-fluid overflow-hidden">
     <div class="row vh-100 overflow-auto">
         <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
@@ -78,19 +78,18 @@
         <div class="col d-flex flex-column h-sm-100">
             <main class="row overflow-auto">
                 <div class="col pt-4">
-                    <h3>Login Page</h3>
+                    <h3>Overview</h3>
                     <hr />
-                    <form method="post" th:action="@{/login}">
-                        <div class="form-group">
-                            <label for="username">Email address</label>
-                            <input type="email" class="form-control" name="username" id="username" placeholder="eg. poketrainer@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="********">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    <h4>ID: </h4>
+                    <div th:text="${trainer.id}"></div>
+                    <h4>Name: </h4>
+                    <div th:text="${trainer.name}"></div>
+                    <h4>Ranking: </h4>
+                    <div th:text="${trainer.trainerType}"></div>
+                    <h4>Pokemons count: </h4>
+                    <div th:text="${trainer.getCountOfPokemons()}"></div>
+                    <h4>Cards count: </h4>
+                    <div th:text="${trainer.getCountOfCards()}"></div>
                 </div>
             </main>
             <footer class="row bg-light py-4 mt-auto">

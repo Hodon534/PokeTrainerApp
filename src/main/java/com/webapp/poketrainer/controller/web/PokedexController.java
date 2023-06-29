@@ -1,6 +1,7 @@
 package com.webapp.poketrainer.controller.web;
 
 import com.webapp.poketrainer.service.PokemonService;
+import com.webapp.poketrainer.service.TrainerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PokedexController {
 
     private final PokemonService pokemonService;
+
+    private final TrainerService trainerService;
 
     /**
      * Method responsible for redirecting to pokedex page

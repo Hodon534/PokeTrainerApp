@@ -28,4 +28,8 @@ public class PokemonDto {
         this.bigImage = bigImage;
         this.trainers = trainers;
     }
+
+    public boolean hasTrainer(Long trainer) {
+        return trainers.contains(trainer);
+    }
 }

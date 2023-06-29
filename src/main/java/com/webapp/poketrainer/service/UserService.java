@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+        return userRepository.findByUsername(email)
                 .orElseThrow(
                         () -> new UsernameNotFoundException(String.format(ExceptionConst.USER_NOT_FOUND_MESSAGE, email)));
     }
@@ -38,9 +38,9 @@ public class UserService implements UserDetailsService {
     }
 
     public String singUpUser(UserEntity user) {
-        boolean userExist = userRepository.findByEmail(user.getEmail()).isPresent();
+        boolean userExist = userRepository.findByUsername(user.getUsername()).isPresent();
         if (userExist) {
-            throw new EmailException(String.format(ExceptionConst.EMAIL_ALREADY_TAKEN_MESSAGE, user.getEmail()));
+            throw new EmailException(String.format(ExceptionConst.EMAIL_ALREADY_TAKEN_MESSAGE, user.getUsername()));
         }
         userRepository.save(user);
 

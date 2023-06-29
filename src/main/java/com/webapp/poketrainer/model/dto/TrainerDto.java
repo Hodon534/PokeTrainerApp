@@ -1,14 +1,13 @@
 package com.webapp.poketrainer.model.dto;
 
-import com.webapp.poketrainer.model.entity.UserEntity;
 import com.webapp.poketrainer.model.enums.TrainerType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Trainer's Object (DTO):
@@ -28,4 +27,14 @@ public class TrainerDto {
     private Set<Long> pokemons;
     private TrainerType trainerType;
     private long user;
+
+    public int getCountOfCards() {
+        AtomicInteger sum = new AtomicInteger();
+        cards.forEach((key, value) -> sum.addAndGet(value));
+        return sum.intValue();
+    }
+
+    public int getCountOfPokemons() {
+        return pokemons.size();
+    }
 }

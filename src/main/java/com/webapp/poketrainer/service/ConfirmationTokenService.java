@@ -1,8 +1,10 @@
 package com.webapp.poketrainer.service;
 
+import com.webapp.poketrainer.model.constants.LogConst;
 import com.webapp.poketrainer.model.entity.ConfirmationTokenEntity;
 import com.webapp.poketrainer.repository.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,6 +15,7 @@ import java.util.Optional;
  */
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ConfirmationTokenService {
 
     private final ConfirmationTokenRepository confirmationTokenRepository;
@@ -40,6 +43,7 @@ public class ConfirmationTokenService {
      * @return int - changes token as confirmed
      */
     public int setConfirmedAt(String token) {
+        log.info(LogConst.TOKEN_CONFIRMED);
         return confirmationTokenRepository.updateConfirmedAt(
                 token, LocalDateTime.now());
     }

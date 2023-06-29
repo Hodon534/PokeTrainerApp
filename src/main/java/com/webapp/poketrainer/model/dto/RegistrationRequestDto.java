@@ -11,10 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class RegistrationRequestDto {
-    @NotNull(message = "Username cannot be null")
-    private String username;
     @Email(message = "Enter a proper email address")
-    private String email;
+    private String username;
+    @NotNull(message = "Nickname cannot be null")
+    private String nickname;
     @Size(min = 8, max = 65, message = "password length has to be between 8 and 65 characters")
     private String password;
 }
