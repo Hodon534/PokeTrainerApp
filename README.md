@@ -4,9 +4,9 @@ For learning purposes
 
 Downloading Data from https://pokeapi.co/ and https://api.pokemontcg.io/
 
-<img height="800" src="https://i.imgur.com/EMtCvdd.png"/>
+<img src="https://i.imgur.com/Z36YOxS.png"/>
 
-<img height="800" src="https://i.imgur.com/lzQQCeY.png"/>
+<img src="https://i.imgur.com/nK3af6g.png"/>
 
 
 
