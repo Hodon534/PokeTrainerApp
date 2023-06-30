@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,112 @@
 <style>
     .text-menu {
         color: rgb(255, 255, 255);
+    }
+        .main-text {
+        text-align:justify;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+    }
+
+    .card-poke-type {
+        display: inline-block;
+    }
+
+    .card-owned {
+        filter: grayscale(0%);
+    }
+
+    .card-not-owned {
+        filter: grayscale(100%);
+    }
+    .custom-card-id {
+        color: #919191;
+    }
+    .type-grass {
+        background-color: #9bcc50;
+        color: #212121;
+    }
+    .type-water {
+        background-color: #4592c4;
+        color: white;
+    }
+    .type-poison {
+        background-color: #b97fc9;
+        color: white;
+    }
+    .type-fire {
+        background-color: #fd7d24;
+        color:white;
+    }
+    .type-bug {
+        background-color: #729f3f;
+        color: white
+    }
+    .type-normal {
+        background-color: #a4acaf;
+        color: #212121;
+    }
+    .type-electric {
+        background-color: #eed535;
+        color: #212121;
+    }
+    .type-fairy {
+        background-color: #fdb9e9;
+        color: #212121;
+    }
+    .type-flying {
+        background: linear-gradient(
+            180deg,
+            #3dc7ef 50%,
+            #bdb9b8 50%
+        );
+        color: #212121;
+    }
+    .type-ground {
+        background: linear-gradient(
+            180deg,
+            #f7de3f 50%,
+            #ab9842 50%
+            );
+        color: #212121;
+    }
+    .type-fighting {
+        background-color: #d56723;
+        color: white;
+    }
+    .type-psychic {
+        background-color: #f366b9;
+        color: white;
+    }
+    .type-rock {
+        background-color: #a38c21;
+        color: white;
+    }
+    .type-steel {
+        background-color: #9eb7b8;
+        color:#212121;
+    }
+    .type-ice {
+        background-color: #51c4e7;
+        color:#212121
+    }
+    .type-ghost {
+        background-color: #7b62a3;
+        color: white;
+    }
+    .type-dragon {
+        background: linear-gradient(
+            180deg,
+            #53a4cf 50%,
+            #f16e57 50%
+            );
+            color: white;
+    }
+    .type-text-font {
+        font-size: smaller;
     }
 </style>
 <body>
@@ -79,18 +185,64 @@
                 <div class="col pt-4">
                     <h3>Home Page</h3>
                     <hr />
-                    <div class="col pt-1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus bibendum nec diam in elementum. Fusce non laoreet quam, vitae convallis felis. Phasellus hendrerit ligula ut libero sodales pellentesque. Suspendisse efficitur viverra elementum. Suspendisse iaculis mauris nulla, tristique viverra nisi faucibus sit amet. Nam ullamcorper non metus ut ultricies. Proin a ipsum eget arcu efficitur dignissim et id justo.
-                        <br><br>
-                        Donec in ipsum eu ipsum sagittis vulputate. Praesent ornare, erat in vulputate malesuada, enim tellus venenatis massa, vitae laoreet lorem lectus sed magna. Praesent sed rhoncus ligula. Nulla at leo nulla. Praesent feugiat tellus at libero luctus, ac feugiat nisl efficitur. Morbi ac odio ante. Nullam ut sapien nec ante fringilla rutrum vel ac tortor. Phasellus ut egestas ante, ac vehicula orci.
-                        <br><br>
-                        Morbi nec libero bibendum, cursus nulla sed, tempus nibh. Mauris id velit urna. Ut porttitor mi at augue lobortis, sit amet rutrum nulla rutrum. Vestibulum a egestas justo. Vestibulum rutrum, erat sit amet cursus fringilla, sem sapien vestibulum dolor, non vestibulum magna lacus non quam. Donec vestibulum erat id eros sagittis pulvinar. Vivamus nec consectetur lectus. Vestibulum cursus quam in dictum hendrerit.
-                        <br><br>
-                        Quisque tincidunt tristique tincidunt. Ut odio lorem, facilisis quis interdum ac, sagittis ut nisl. Nam tincidunt tellus non dui vulputate bibendum. Praesent quis ante quis purus euismod vestibulum. Mauris id sodales ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-                        <br><br>
-                        Vestibulum lorem turpis, congue id pretium nec, scelerisque eu massa. Quisque lobortis quam sit amet leo semper, vitae iaculis urna porta. Donec quis ipsum molestie, pretium ex fermentum, bibendum sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In elementum sed mauris hendrerit tincidunt. Nullam interdum suscipit purus sed lobortis. Fusce laoreet magna quis lorem eleifend consectetur. Maecenas maximus, lacus in finibus ultrices, massa leo consequat erat, nec porta nisi dui eu velit. Vestibulum auctor vel neque in bibendum. Donec vitae consectetur tortor, blandit pellentesque dolor. Pellentesque ac ipsum metus. Suspendisse potenti. Morbi sit amet nibh eget arcu pellentesque tincidunt.
-                    </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 col-lg-4 col-sm-12 col-xs-12 pt-1 main-text">
+                            Welcome to the Pokémon Trainer Simulator!
+                            <br><br>
+                            Embark on an exciting adventure in the world of Pokémon, where you can catch your favorite creatures and collect rare Pokémon cards. Immerse yourself in a captivating experience that combines the thrill of exploration, strategy, and the joy of becoming a skilled Pokémon Trainer.
+                            <br><br>
+                            Catch Pokémon:
+                            Venture into various locations, from lush forests to bustling cities, in search of wild Pokémon. Use your skills to catch them with Poké Balls, and build an impressive collection of unique and powerful Pokémon.
+                            <br><br>
+                            Collect Pokémon Cards:
+                            Expand your collection beyond the virtual world by gathering Pokémon cards. Discover rare cards featuring beloved Pokémon, each with their own strengths and characteristics.
+                            <br><br>
+                            Begin your Pokémon journey today and discover the wonders that await in this captivating world. Unleash your inner Trainer, catch extraordinary Pokémon, and become a legendary force in the Pokémon Catch and Collect universe!
+                            <hr>
+
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-lg-4 col-sm-12 col-xs-12 pt-1">
+                            <h4 class="text-center">Pokemon for you!</h4>
+                                <div class="card h-200 p-3 rounded-4 items mx-auto" style="width: 15rem;">
+                                    <a href="/pokemon">
+                                        <img th:src="${pokemon.bigImage}" alt="Card image cap" class="card-img-top">
+                                    </a>
+                                    <div class="card-body">
+                                        <hr>
+                                        <div class="card-poke-type" >
+                                            <p class="card-title fw-bold custom-card-id card-poke-type" th:if="${pokemon.id} < 10" th:text="'#000' + ${pokemon.id}"></p>
+                                            <p class="card-title fw-bold custom-card-id card-poke-type" th:if="${pokemon.id} < 100 and ${pokemon.id} >= 10" th:text="'#00' + ${pokemon.id}"></p>
+                                            <p class="card-title fw-bold custom-card-id card-poke-type" th:if="${pokemon.id} >= 100 and ${pokemon.id} < 1000" th:text="'#0' + ${pokemon.id}"></p>
+                                            <p class="card-title fw-bold custom-card-id card-poke-type" th:if="${pokemon.id} > 1000" th:text="'#' + ${pokemon.id}"></p>
+                                        </div>
+                                        <p class="card-text fw-bold fs-5" th:text="${#strings.toUpperCase(pokemon.name)}"></p>
+                                        <div th:each="type : ${pokemon.types}" class="card-poke-type">
+                                            <div class="card-poke-type text-capitalize rounded-1 px-3 type-text-font" th:text="${#strings.capitalize(type)}"
+                                                 th:classappend="
+                                             (${type} == 'grass' ? type-grass : '') +
+                                             (${type} == 'water' ? type-water : '') +
+                                             (${type} == 'poison' ? type-poison : '') +
+                                             (${type} == 'fire' ? type-fire : '') +
+                                             (${type} == 'bug' ? type-bug : '') +
+                                             (${type} == 'normal' ? type-normal : '') +
+                                             (${type} == 'electric' ? type-electric : '') +
+                                             (${type} == 'fairy' ? type-fairy : '') +
+                                             (${type} == 'flying' ? type-flying : '') +
+                                             (${type} == 'ground' ? type-ground : '') +
+                                             (${type} == 'fighting' ? type-fighting : '') +
+                                             (${type} == 'psychic' ? type-psychic : '') +
+                                             (${type} == 'rock' ? type-rock : '') +
+                                             (${type} == 'steel' ? type-steel : '') +
+                                             (${type} == 'ice' ? type-ice : '') +
+                                             (${type} == 'ghost' ? type-ghost : '') +
+                                             (${type} == 'dragon' ? type-dragon : '')
+"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                        </div>
             </main>
             <footer class="row bg-light py-4 mt-auto">
                 <div class="col">Pokemon Trainer Application Developer - 2023</div>

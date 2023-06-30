@@ -65,4 +65,15 @@ public class PokemonService {
         }
         return get((long) randomNo);
     }
+
+    public PokemonDto getRandom() {
+        int randomNo;
+        while (true) {
+            randomNo = random.nextInt(PokemonGeneration.ALL.indexStart, PokemonGeneration.ALL.indexEnd);
+            if (exist((long) randomNo)) {
+                break;
+            }
+        }
+        return pokemonMapper.entityToDto(get((long) randomNo));
+    }
 }

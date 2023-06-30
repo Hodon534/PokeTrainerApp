@@ -16,8 +16,6 @@ public class PokedexController {
 
     private final PokemonService pokemonService;
 
-    private final TrainerService trainerService;
-
     /**
      * Method responsible for redirecting to pokedex page
      * @param model - All pokemons available in database

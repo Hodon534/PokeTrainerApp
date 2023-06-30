@@ -17,13 +17,19 @@
     }
 .card-img-top {
 width: 100%;
-height: 40vh;
+height: 300px;
 object-fit: contain;
 }
 
 .card-poke-type {
 display: inline-block;
 }
+    .type-text-font {
+        font-size: smaller;
+    }
+    .m-pokeball {
+        margin-left: 5em;
+    }
  </style>
 </head>
 <body>
@@ -87,18 +93,19 @@ display: inline-block;
             <main class="row overflow-auto">
                 <div class="col pt-4">
                     <h3>Card Collection</h3>
-                    <p class="lead">Test Subtitle</p>
                     <hr />
-
                     <div class="row">
-                        <div class="col-xl-3" th:each="card : ${cards}">
-                            <div class="card h-100 p-3" style="width: 15rem;">
+                        <div class="col-xl-3 col-lg-4 col-md-5 mb-3" th:each="card : ${cards}">
+                            <div class="card p-2 rounded-4" style="width: 15rem;">
                                 <img class="card-img-top card-owned" th:src="${card.key.smallImage}" alt="Card image cap">
                                 <div class="card-body">
                                     <hr>
-                                    <p class="card-title" th:text="${card.key.id}"></p>
-                                    <p class="card-text" th:text="${card.key.name}"></p>
-                                    <p class="card-text" th:text="${card.value}"></p>
+                                    <div class="card-poke-type" >
+                                        <p class="card-title custom-card-id card-poke-type" th:text="${card.key.id}"></p>
+                                        <img src="/images/cards.png" width="24" height="24" class="d-inline-block m-pokeball" alt="cards" title="Number of cards that you have in your collection">
+                                        <p class="card-poke-type fw-bold" th:text="${card.value}"></p>
+                                    </div>
+                                    <p class="card-text fw-bold" th:text="${card.key.name}"></p>
                                 </div>
                             </div>
                         </div>
