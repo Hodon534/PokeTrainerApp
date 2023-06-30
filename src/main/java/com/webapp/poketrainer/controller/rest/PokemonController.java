@@ -45,8 +45,9 @@ public class PokemonController {
     }
 
     @PostMapping("/catchRandom")
-    public void getRandomPokemon() {
+    public String getRandomPokemon() {
         trainerService
                 .addPokemon(pokemonService.catchRandom(trainerService.getLogged()));
+        return "catch";
     }
 }

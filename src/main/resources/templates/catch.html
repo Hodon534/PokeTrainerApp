@@ -214,9 +214,21 @@
                             <p class="lead">Throw the <span>Poké Ball</span></p>
                             <div class="wrap">
                                 <form th:action="@{/api/v1/pokemon/catchRandom}" method="post">
+                                    <button type="submit">
                                     <img id="poke-ball" src="/images/pokeball_catch.svg"
-                                         alt="Poké Ball" type="submit">
+                                         alt="Poké Ball" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                                    </button>
+
                                 </form>
+                            </div>
+                            <br>
+                            <div style="min-height: 120px;">
+                                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>You made it!</strong> You've catched a new pokemon - check it out in <a href="pokedex">Pokedex!</a>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
                             </div>
                     <!--<h2>Catch a Pokemon!</h2>
                     <form th:action="@{/api/v1/pokemon/catchRandom}" method="post">

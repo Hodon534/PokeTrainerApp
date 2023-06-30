@@ -4,7 +4,11 @@ For learning purposes
 
 Downloading Data from https://pokeapi.co/ and https://api.pokemontcg.io/
 
-<img height="700" src="https://i.imgur.com/RjXXP9W.png"/>
+<img height="800" src="https://i.imgur.com/EMtCvdd.png"/>
+
+<img height="800" src="https://i.imgur.com/lzQQCeY.png"/>
+
+
 
 Features:
 
