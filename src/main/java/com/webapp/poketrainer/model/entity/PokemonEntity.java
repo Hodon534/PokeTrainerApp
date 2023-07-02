@@ -29,7 +29,7 @@ public class PokemonEntity implements Serializable {
     @Column(name="big_image")
     private String bigImage;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "pokemons", cascade = CascadeType.ALL)
-    private Set<TrainerEntity> trainers;// = new HashSet<>();
+    private Set<TrainerEntity> trainers;
 
 
     public PokemonEntity(Long id, String name, Long height, Long weight, List<String> pokemonTypes, Long baseExperience, String bigImage, Set<TrainerEntity> trainers) {
