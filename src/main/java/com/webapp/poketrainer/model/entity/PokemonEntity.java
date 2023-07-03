@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(of="id")
 @NoArgsConstructor
 @Entity
 @Table(name = "pokemons")

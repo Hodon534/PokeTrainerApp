@@ -2,6 +2,7 @@ package com.webapp.poketrainer.model.entity;
 
 import com.webapp.poketrainer.model.enums.TrainerType;
 import jakarta.persistence.*;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-//@EqualsAndHashCode
+@EqualsAndHashCode(of="id")
 @Entity
 @Table(name = "trainers")
 public class TrainerEntity implements Serializable {
@@ -25,7 +26,7 @@ public class TrainerEntity implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "pokemons_trainers",
-            joinColumns = @JoinColumn(name = "trainers_id"),
+            joinColumns = @JoinColumn(name = "trainers_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "pokemons_id"))
     private Set<PokemonEntity> pokemons = new HashSet<>();
     @ElementCollection(fetch = FetchType.EAGER)
